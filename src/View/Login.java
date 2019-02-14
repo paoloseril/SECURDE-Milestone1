@@ -93,7 +93,7 @@ public class Login extends javax.swing.JPanel {
         String password = String.valueOf(jTextField2.getPassword());
         if (username.isEmpty() || password.isEmpty()) {
             frame.loginNav();
-            JOptionPane.showMessageDialog(this, "One or more fields is empty.");
+            JOptionPane.showMessageDialog(this, "One or more fields is empty!");
         }
         else {
             int role = frame.main.sqlite.authenticate(username, password);
@@ -102,7 +102,7 @@ public class Login extends javax.swing.JPanel {
             }
             else {
                 frame.loginNav();
-                JOptionPane.showMessageDialog(this, "Username or password entered is incorrect.");
+                JOptionPane.showMessageDialog(this, "Invalid credentials!");
             }
         }
         jTextField1.setText("");
