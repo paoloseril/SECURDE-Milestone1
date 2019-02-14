@@ -206,6 +206,7 @@ public class Frame extends javax.swing.JFrame {
     private ManagerHome managerHomePnl = new ManagerHome();
     private StaffHome staffHomePnl = new StaffHome();
     private ClientHome clientHomePnl = new ClientHome();
+    private DisabledHome disabledHomePnl = new DisabledHome();
     
     private CardLayout contentView = new CardLayout();
     private CardLayout frameView = new CardLayout();
@@ -230,6 +231,8 @@ public class Frame extends javax.swing.JFrame {
         Content.add(managerHomePnl, "managerHomePnl");
         Content.add(staffHomePnl, "staffHomePnl");
         Content.add(clientHomePnl, "clientHomePnl");
+        Content.add(disabledHomePnl, "disabledHomePnl");
+
         
         this.setVisible(true);
         setResizable(false);
@@ -270,6 +273,7 @@ public class Frame extends javax.swing.JFrame {
                 break;
             }
             case 1: {
+                contentView.show(Content, "disabledHomePnl");
                 adminBtn.setEnabled(false);
                 managerBtn.setEnabled(false);
                 staffBtn.setEnabled(false);
