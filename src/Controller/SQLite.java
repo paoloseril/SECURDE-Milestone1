@@ -9,9 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SQLite {
-    
+
     String driverURL = "jdbc:sqlite:" + "database.db";
-    
+
     public void createNewDatabase() {
         try (Connection conn = DriverManager.getConnection(driverURL)) {
             if (conn != null) {
@@ -26,7 +26,7 @@ public class SQLite {
             + " id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
             + " username TEXT NOT NULL,\n"
             + " password TEXT NOT NULL,\n"
-            + " role INTEGER DEFAULT 2\n"
+            + " role INTEGER DEFAULT 1\n"
             + ");";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
@@ -88,9 +88,40 @@ public class SQLite {
             Statement stmt = conn.createStatement()){
             stmt.execute(sql);
             
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-    
+
+    public boolean userExists(String username) {
+        String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    public int authenticate(String username, String password) {
+        String sql = "select role from users where username = '" + username + "' and password = '" + password + "'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return rs.getInt("role");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return -99;
+    }
     public void removeUser(String username) {
         String sql = "DELETE FROM users WHERE username='" + username + "');";
 
@@ -98,7 +129,9 @@ public class SQLite {
             Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
             System.out.println("User " + username + " has been deleted.");
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
     
 }

@@ -1,6 +1,9 @@
 
 package View;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Register extends javax.swing.JPanel {
 
     public Frame frame;
@@ -14,15 +17,14 @@ public class Register extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        password = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        confpass = new javax.swing.JTextField();
+        confpass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(Color.BLACK);
         jButton1.setText("REGISTER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -35,6 +37,7 @@ public class Register extends javax.swing.JPanel {
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "PASSWORD", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
+        password.setEchoChar('*');
         username.setBackground(new java.awt.Color(240, 240, 240));
         username.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -50,9 +53,9 @@ public class Register extends javax.swing.JPanel {
         confpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         confpass.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "CONFIRM PASSWORD", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        confpass.setEchoChar('*');
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(Color.BLACK);
         jButton2.setText("<Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,8 +104,26 @@ public class Register extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        frame.registerAction(username.getText(), password.getText(), confpass.getText());
-        frame.loginNav();
+        String user_name = username.getText();
+        String pass_word = String.valueOf(password.getPassword());
+        String conf_pass = String.valueOf(confpass.getPassword());
+        username.setText("");
+        password.setText("");
+        confpass.setText("");
+        if (user_name.isEmpty() || pass_word.isEmpty() || conf_pass.isEmpty()) {
+            frame.registerNav();
+            JOptionPane.showMessageDialog(this, "One or more fields is empty!");
+        }
+        else if (frame.main.sqlite.userExists(user_name) || !conf_pass.equals(pass_word)) {
+            frame.registerNav();
+            JOptionPane.showMessageDialog(this, "Username already exists!");
+        }
+        else {
+            // alert that user has been registered
+            frame.registerAction(user_name, pass_word, conf_pass);
+            JOptionPane.showMessageDialog(this, "User has been successfully registered.");
+            frame.loginNav();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -111,11 +132,11 @@ public class Register extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField confpass;
+    private javax.swing.JPasswordField confpass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

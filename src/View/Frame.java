@@ -52,7 +52,7 @@ public class Frame extends javax.swing.JFrame {
         adminBtn.setFocusable(false);
         adminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminBtnActionPerformed(evt);
+                adminBtnActionPerformed();
             }
         });
 
@@ -67,7 +67,7 @@ public class Frame extends javax.swing.JFrame {
         managerBtn.setFocusable(false);
         managerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtnActionPerformed(evt);
+                managerBtnActionPerformed();
             }
         });
 
@@ -77,7 +77,7 @@ public class Frame extends javax.swing.JFrame {
         staffBtn.setFocusable(false);
         staffBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                staffBtnActionPerformed(evt);
+                staffBtnActionPerformed();
             }
         });
 
@@ -87,7 +87,7 @@ public class Frame extends javax.swing.JFrame {
         clientBtn.setFocusable(false);
         clientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientBtnActionPerformed(evt);
+                clientBtnActionPerformed();
             }
         });
 
@@ -178,19 +178,19 @@ public class Frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
+    private void adminBtnActionPerformed() {//GEN-FIRST:event_adminBtnActionPerformed
         contentView.show(Content, "adminHomePnl");
     }//GEN-LAST:event_adminBtnActionPerformed
 
-    private void managerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtnActionPerformed
+    private void managerBtnActionPerformed() {//GEN-FIRST:event_managerBtnActionPerformed
         contentView.show(Content, "managerHomePnl");
     }//GEN-LAST:event_managerBtnActionPerformed
 
-    private void staffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffBtnActionPerformed
+    private void staffBtnActionPerformed() {//GEN-FIRST:event_staffBtnActionPerformed
         contentView.show(Content, "staffHomePnl");
     }//GEN-LAST:event_staffBtnActionPerformed
 
-    private void clientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientBtnActionPerformed
+    private void clientBtnActionPerformed() {//GEN-FIRST:event_clientBtnActionPerformed
         contentView.show(Content, "clientHomePnl");
     }//GEN-LAST:event_clientBtnActionPerformed
 
@@ -232,9 +232,51 @@ public class Frame extends javax.swing.JFrame {
         Content.add(clientHomePnl, "clientHomePnl");
         
         this.setVisible(true);
+        setResizable(false);
     }
     
-    public void mainNav(){
+    public void mainNav(int role){
+        switch (role) {
+            case 5: {
+                adminBtnActionPerformed();
+                adminBtn.setEnabled(true);
+                managerBtn.setEnabled(false);
+                staffBtn.setEnabled(false);
+                clientBtn.setEnabled(false);
+                break;
+            }
+            case 4: {
+                managerBtnActionPerformed();
+                adminBtn.setEnabled(false);
+                managerBtn.setEnabled(true);
+                staffBtn.setEnabled(false);
+                clientBtn.setEnabled(false);
+                break;
+            }
+            case 3: {
+                staffBtnActionPerformed();
+                adminBtn.setEnabled(false);
+                managerBtn.setEnabled(false);
+                staffBtn.setEnabled(true);
+                clientBtn.setEnabled(false);
+                break;
+            }
+            case 2: {
+                clientBtnActionPerformed();
+                adminBtn.setEnabled(false);
+                managerBtn.setEnabled(false);
+                staffBtn.setEnabled(false);
+                clientBtn.setEnabled(true);
+                break;
+            }
+            case 1: {
+                adminBtn.setEnabled(false);
+                managerBtn.setEnabled(false);
+                staffBtn.setEnabled(false);
+                clientBtn.setEnabled(false);
+                break;
+            }
+        }
         frameView.show(Container, "homePnl");
     }
     
