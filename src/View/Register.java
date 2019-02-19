@@ -4,7 +4,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class Register extends javax.swing.JPanel {
+public class    Register extends javax.swing.JPanel {
 
     public Frame frame;
     
@@ -113,6 +113,10 @@ public class Register extends javax.swing.JPanel {
         if (user_name.isEmpty() || pass_word.isEmpty() || conf_pass.isEmpty()) {
             frame.registerNav();
             JOptionPane.showMessageDialog(this, "One or more fields is empty!");
+        }
+        else if (!conf_pass.equals(password)){
+            frame.registerNav();
+            JOptionPane.showMessageDialog(this, "Confirm Password does not Match");
         }
         else if (frame.main.sqlite.userExists(user_name) || !conf_pass.equals(pass_word)) {
             frame.registerNav();
