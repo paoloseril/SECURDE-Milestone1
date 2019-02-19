@@ -116,7 +116,7 @@ public class Register extends javax.swing.JPanel {
         }
         else if (frame.main.sqlite.userExists(user_name)) {
             frame.registerNav();
-            JOptionPane.showMessageDialog(this, "Username already exists!");
+            JOptionPane.showMessageDialog(this, "The username already exists. Please use a different username!");
         }
         else if (!conf_pass.equals(pass_word)){
             frame.registerNav();
