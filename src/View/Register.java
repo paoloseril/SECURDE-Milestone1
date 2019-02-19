@@ -114,13 +114,13 @@ public class    Register extends javax.swing.JPanel {
             frame.registerNav();
             JOptionPane.showMessageDialog(this, "One or more fields is empty!");
         }
-        else if (!conf_pass.equals(password)){
-            frame.registerNav();
-            JOptionPane.showMessageDialog(this, "Confirm Password does not Match");
-        }
-        else if (frame.main.sqlite.userExists(user_name) || !conf_pass.equals(pass_word)) {
+        else if (frame.main.sqlite.userExists(user_name)) {
             frame.registerNav();
             JOptionPane.showMessageDialog(this, "Username already exists!");
+        }
+        else if (!conf_pass.equals(pass_word)){
+            frame.registerNav();
+            JOptionPane.showMessageDialog(this, "Confirm Password does not Match");
         }
         else {
             // alert that user has been registered
