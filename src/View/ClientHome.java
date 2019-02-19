@@ -18,6 +18,10 @@ public class ClientHome extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void setUsername(String username) {
+        jLabel1.setText("WELCOME " + username + "!");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +37,6 @@ public class ClientHome extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("WELCOME CLIENT!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

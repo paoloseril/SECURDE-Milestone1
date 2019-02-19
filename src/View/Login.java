@@ -98,7 +98,7 @@ public class Login extends javax.swing.JPanel {
         else {
             int role = frame.main.sqlite.authenticate(username, password);
             if (role != -99) {
-                frame.mainNav(role);
+                frame.mainNav(username, role);
             }
             else {
                 frame.loginNav();

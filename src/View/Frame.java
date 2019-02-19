@@ -238,7 +238,7 @@ public class Frame extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public void mainNav(int role){
+    public void mainNav(String username, int role){
         switch (role) {
             case 5: {
                 adminBtnActionPerformed();
@@ -270,6 +270,7 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setEnabled(false);
                 staffBtn.setEnabled(false);
                 clientBtn.setEnabled(true);
+                clientHomePnl.setUsername(username);
                 break;
             }
             case 1: {
