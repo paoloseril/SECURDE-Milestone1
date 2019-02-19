@@ -26,7 +26,7 @@ public class SQLite {
             + " id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
             + " username TEXT NOT NULL,\n"
             + " password TEXT NOT NULL,\n"
-            + " role INTEGER DEFAULT 1\n"
+            + " role INTEGER DEFAULT 2\n"
             + ");";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
