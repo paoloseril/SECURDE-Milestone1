@@ -4,7 +4,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class    Register extends javax.swing.JPanel {
+public class Register extends javax.swing.JPanel {
 
     public Frame frame;
     
