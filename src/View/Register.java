@@ -120,7 +120,7 @@ public class Register extends javax.swing.JPanel {
         }
         else if (!conf_pass.equals(pass_word)){
             frame.registerNav();
-            JOptionPane.showMessageDialog(this, "Confirm Password does not Match");
+            JOptionPane.showMessageDialog(this, "Confirmation password does not match the password!");
         }
         else {
             // alert that user has been registered
