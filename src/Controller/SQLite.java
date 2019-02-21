@@ -95,7 +95,7 @@ public class SQLite {
         if (password.length() < 10 || password.length() > 15) {
             return false;
         }
-        else return password.matches("\\w+[A-Z]{2}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2}\\w+");
+        else return password.matches("\\w+[A-Z]{2,}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}\\w+");
     }
 
     public void addUser(String username, String password, int role) {
