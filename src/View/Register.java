@@ -106,9 +106,6 @@ public class Register extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user_name = username.getText();
 
-        // password should be between 8 - 15 characters
-        //                 has at least 2 uppercase letters and symbols
-
         String pass_word = String.valueOf(password.getPassword());
 
         String conf_pass = String.valueOf(confpass.getPassword());
@@ -119,19 +116,25 @@ public class Register extends javax.swing.JPanel {
             frame.registerNav();
             JOptionPane.showMessageDialog(this, "One or more fields is empty!");
         }
-        else if (frame.main.sqlite.userExists(user_name)) {
-            frame.registerNav();
-            JOptionPane.showMessageDialog(this, "The username already exists. Please use a different username!");
-        }
         else if (!conf_pass.equals(pass_word)){
             frame.registerNav();
             JOptionPane.showMessageDialog(this, "Confirmation password does not match the password!");
         }
+        else if (frame.main.sqlite.userExists(user_name)) {
+            frame.registerNav();
+            JOptionPane.showMessageDialog(this, "The username already exists. Please use a different username!");
+        }
         else {
-            // alert that user has been registered
-            frame.registerAction(user_name, pass_word, conf_pass);
-            JOptionPane.showMessageDialog(this, "User has been successfully registered.");
-            frame.loginNav();
+            if (frame.main.sqlite.isAcceptable(pass_word)) {
+                // alert that user has been registered
+                frame.registerAction(user_name, pass_word, conf_pass);
+                JOptionPane.showMessageDialog(this, "User has been successfully registered.");
+                frame.loginNav();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Password is not acceptable!");
+                frame.registerNav();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

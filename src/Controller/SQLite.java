@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SQLite {
 
-    String driverURL = "jdbc:sqlite:" + "database.db";
+    private String driverURL = "jdbc:sqlite:" + "database.db";
 
     public void createNewDatabase() {
         try (Connection conn = DriverManager.getConnection(driverURL)) {
@@ -88,9 +88,17 @@ public class SQLite {
             ex.printStackTrace();
         }
     }
-    
-    public void addUser(String username, String password, int role) {
 
+    // should be between 10 to 15 characters in length
+    // should be a mix of uppercase, lowercase and symbols (at least 2 uppercase letters and 2 symbols (but it should not be these only ones))
+    public boolean isAcceptable(String password) {
+        if (password.length() < 10 || password.length() > 15) {
+            return false;
+        }
+        else return password.matches("\\w+[A-Z]{2}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2}\\w+");
+    }
+
+    public void addUser(String username, String password, int role) {
 
         String encrypted_password = AES.encrypt(password);
 
