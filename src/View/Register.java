@@ -105,7 +105,12 @@ public class Register extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user_name = username.getText();
+
+        // password should be between 8 - 15 characters
+        //                 has at least 2 uppercase letters and symbols
+
         String pass_word = String.valueOf(password.getPassword());
+
         String conf_pass = String.valueOf(confpass.getPassword());
         username.setText("");
         password.setText("");

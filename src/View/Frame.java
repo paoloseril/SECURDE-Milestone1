@@ -242,43 +242,43 @@ public class Frame extends javax.swing.JFrame {
         switch (role) {
             case 5: {
                 adminBtnActionPerformed();
-                adminBtn.setEnabled(true);
-                managerBtn.setEnabled(false);
-                staffBtn.setEnabled(false);
-                clientBtn.setEnabled(false);
+                adminBtn.setVisible(true);
+                managerBtn.setVisible(false);
+                staffBtn.setVisible(false);
+                clientBtn.setVisible(false);
                 break;
             }
             case 4: {
                 managerBtnActionPerformed();
-                adminBtn.setEnabled(false);
-                managerBtn.setEnabled(true);
-                staffBtn.setEnabled(false);
-                clientBtn.setEnabled(false);
+                adminBtn.setVisible(false);
+                managerBtn.setVisible(true);
+                staffBtn.setVisible(false);
+                clientBtn.setVisible(false);
                 break;
             }
             case 3: {
                 staffBtnActionPerformed();
-                adminBtn.setEnabled(false);
-                managerBtn.setEnabled(false);
-                staffBtn.setEnabled(true);
-                clientBtn.setEnabled(false);
+                adminBtn.setVisible(false);
+                managerBtn.setVisible(false);
+                staffBtn.setVisible(true);
+                clientBtn.setVisible(false);
                 break;
             }
             case 2: {
                 clientBtnActionPerformed();
-                adminBtn.setEnabled(false);
-                managerBtn.setEnabled(false);
-                staffBtn.setEnabled(false);
-                clientBtn.setEnabled(true);
+                adminBtn.setVisible(false);
+                managerBtn.setVisible(false);
+                staffBtn.setVisible(false);
+                clientBtn.setVisible(true);
                 clientHomePnl.setUsername(username);
                 break;
             }
             case 1: {
                 contentView.show(Content, "disabledHomePnl");
-                adminBtn.setEnabled(false);
-                managerBtn.setEnabled(false);
-                staffBtn.setEnabled(false);
-                clientBtn.setEnabled(false);
+                adminBtn.setVisible(false);
+                managerBtn.setVisible(false);
+                staffBtn.setVisible(false);
+                clientBtn.setVisible(false);
                 break;
             }
         }

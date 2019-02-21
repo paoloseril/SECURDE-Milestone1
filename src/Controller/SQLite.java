@@ -1,11 +1,9 @@
 package Controller;
 
 import Model.User;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import Values.AES;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class SQLite {
@@ -72,7 +70,9 @@ public class SQLite {
     }
     
     public void addUser(String username, String password) {
-        String sql = "INSERT INTO users(username,password) VALUES('" + username + "','" + password + "')";
+
+        String encrypted_password = AES.encrypt(password);
+        String sql = "INSERT INTO users(username,password) VALUES('" + username + "','" + encrypted_password + "')";
         
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()){
@@ -90,7 +90,11 @@ public class SQLite {
     }
     
     public void addUser(String username, String password, int role) {
-        String sql = "INSERT INTO users(username,password,role) VALUES('" + username + "','" + password + "','" + role + "')";
+
+
+        String encrypted_password = AES.encrypt(password);
+
+        String sql = "INSERT INTO users(username,password,role) VALUES('" + username + "','" + encrypted_password + "','" + role + "')";
         
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()){
@@ -116,14 +120,19 @@ public class SQLite {
         return false;
     }
     public int authenticate(String username, String password) {
-        String sql = "select role from users where username = '" + username + "' and password = '" + password + "'";
+
+        String sql = "select * from users where username = '" + username + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             if (rs.next()) {
-                return rs.getInt("role");
+                String the_p = AES.decrypt(rs.getString("password"));
+                if (the_p.equals(password)) {
+                    return rs.getInt("role");
+                }
+                return -99;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
