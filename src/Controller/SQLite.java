@@ -22,8 +22,8 @@ public class SQLite {
     public void createUserTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users (\n"
             + " id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
-            + " username TEXT NOT NULL,\n"
-            + " password TEXT NOT NULL,\n"
+            + " username UNIQUE NOT NULL,\n"
+            + " password NOT NULL,\n"
             + " role INTEGER DEFAULT 2\n"
             + ");";
 
@@ -95,7 +95,7 @@ public class SQLite {
         if (password.length() < 10 || password.length() > 15) {
             return false;
         }
-        else return password.matches("\\w+[A-Z]{2,}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}\\w*");
+        else return password.matches("\\w+[A-Z]{2,}\\w*[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}\\w*");
     }
 
     public void addUser(String username, String password, int role) {

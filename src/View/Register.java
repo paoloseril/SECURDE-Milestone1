@@ -2,6 +2,8 @@
 package View;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class Register extends javax.swing.JPanel {
@@ -20,6 +22,7 @@ public class Register extends javax.swing.JPanel {
         password = new javax.swing.JPasswordField();
         username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new JLabel();
         confpass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
 
@@ -48,6 +51,13 @@ public class Register extends javax.swing.JPanel {
         jLabel1.setText("SECURITY Svcs");
         jLabel1.setToolTipText("");
 
+        jLabel2.setFont(new java.awt.Font("Arial", Font.PLAIN, 15));
+        jLabel2.setForeground(Color.BLACK);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Password should be between 10 to 15 characters in length\n" +
+                "and should be a mix of uppercase, lowercase and symbols (at least 2 uppercase letters and 2 symbols (but it should not be these only ones))");
+        jLabel2.setToolTipText("");
+
         confpass.setBackground(new java.awt.Color(240, 240, 240));
         confpass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         confpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -62,6 +72,8 @@ public class Register extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jButton1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,7 +159,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JPasswordField confpass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel1, jLabel2;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
