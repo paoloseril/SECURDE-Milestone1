@@ -89,12 +89,39 @@ public class SQLite {
         }
     }
 
-    // should be between 8 to 15 characters in length
+    // should be between 10 to 15 characters in length
     public boolean isAcceptable(String password) {
-        if (password.length() < 8 || password.length() > 15) {
+        if (password.length() < 10 || password.length() > 15) {
             return false;
         }
-        else return password.matches(".*[A-Z]{2,}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}[a-z]{2,}.*");
+        else return passwordValidity(password);
+    }
+
+    private boolean passwordValidity(String password) {
+        int ucCount = 0;
+        int lcCount = 0;
+        int numCount = 0;
+        int symCount = 0;
+        char[] sym = password.toCharArray();
+        for (char c: sym) {
+            // quotes are not allowed in the password
+            if (c == '"' || c == '\'') {
+                return false;
+            }
+            else if (c >= 'a' && c <= 'z') {
+                lcCount += 1;
+            }
+            else if (c >= 'A' && c <= 'Z') {
+                ucCount += 1;
+            }
+            else if (c >= '0' && c <= '9') {
+                numCount += 1;
+            }
+            else if ("!#$%&()*+,-./:;<=>?@[\\\\]^_`{}~".contains(String.valueOf(c))) {
+                symCount += 1;
+            }
+        }
+        return ucCount >= 2 && lcCount >= 3 && numCount >= 2 && symCount >= 3;
     }
 
     public void addUser(String username, String password, int role) {
