@@ -161,6 +161,7 @@ public class Register extends javax.swing.JPanel {
         setUsernameFieldBlack();
         setPasswordFieldBlack();
         setConfirmPasswordFieldBlack();
+        jLabel2.setForeground(Color.BLACK);
         jLabel3.setForeground(Color.BLACK);
         if (user_name.isEmpty() || pass_word.isEmpty() || conf_pass.isEmpty()) {
             frame.registerNav();
@@ -199,6 +200,7 @@ public class Register extends javax.swing.JPanel {
                 frame.loginNav();
             }
             else {
+                jLabel2.setForeground(Color.RED);
                 jLabel3.setForeground(Color.RED);
                 jLabel4.setText("Password entered does not follow the rules!");
                 setPasswordFieldRed();
@@ -237,6 +239,7 @@ public class Register extends javax.swing.JPanel {
     }
 
     private void setNormal() {
+        jLabel2.setForeground(Color.BLACK);
         jLabel3.setForeground(Color.BLACK);
         jLabel4.setText("");
         username.setText("");

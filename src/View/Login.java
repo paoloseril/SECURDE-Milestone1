@@ -128,6 +128,7 @@ public class Login extends javax.swing.JPanel {
             int role = frame.main.sqlite.authenticate(username, password);
             if (role != -99) {
                 setNormal();
+                failedAttempts = 0;
                 frame.mainNav(username, role);
             }
             else {
@@ -153,6 +154,7 @@ public class Login extends javax.swing.JPanel {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setNormal();
+        failedAttempts = 0;
         frame.registerNav();
     }//GEN-LAST:event_jButton1ActionPerformed
 
