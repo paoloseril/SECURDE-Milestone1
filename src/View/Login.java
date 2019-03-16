@@ -12,9 +12,13 @@ public class Login extends javax.swing.JPanel {
         initComponents();
     }
 
+    private int failedAttempts;
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        failedAttempts = 0;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -101,13 +105,11 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int failedAttempts = 0;
         String username = jTextField1.getText();
         String password = String.valueOf(jTextField2.getPassword());
         setUsernameFieldBlack();
         setPasswordFieldBlack();
         if (username.isEmpty() || password.isEmpty()) {
-            frame.loginNav();
             if (username.isEmpty() && password.isEmpty()) {
                 jLabel2.setText("Username and password fields are empty!");
                 setUsernameFieldRed();
@@ -129,18 +131,27 @@ public class Login extends javax.swing.JPanel {
                 frame.mainNav(username, role);
             }
             else {
-                frame.loginNav();
                 jLabel2.setText("Invalid credentials!");
-                failedAttempts+=1;
+                System.out.println(failedAttempts);
+                failedAttempts += 1;
+                if (failedAttempts == 3) {
+                    e_Mode();
+                }
             }
         }
         jTextField1.setText("");
         jTextField2.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void e_Mode() {
+        setNormal();
+        jLabel2.setText("The app is locked out. Please contact the administrator.");
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextField1.setText("");
-        jTextField2.setText("");
         setNormal();
         frame.registerNav();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -162,6 +173,8 @@ public class Login extends javax.swing.JPanel {
     }
 
     private void setNormal() {
+        jTextField1.setText("");
+        jTextField2.setText("");
         jLabel2.setText("");
         setUsernameFieldBlack();
         setPasswordFieldBlack();
