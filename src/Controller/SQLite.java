@@ -89,13 +89,12 @@ public class SQLite {
         }
     }
 
-    // should be between 10 to 15 characters in length
-    // should be a mix of uppercase, lowercase and symbols (at least 2 uppercase letters and 2 symbols (but it should not be these only ones))
+    // should be between 8 to 15 characters in length
     public boolean isAcceptable(String password) {
-        if (password.length() < 10 || password.length() > 15) {
+        if (password.length() < 8 || password.length() > 15) {
             return false;
         }
-        else return password.matches("\\w+[A-Z]{2,}\\w*[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}\\w*");
+        else return password.matches(".*[A-Z]{2,}[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{}~]{2,}[a-z]{2,}.*");
     }
 
     public void addUser(String username, String password, int role) {

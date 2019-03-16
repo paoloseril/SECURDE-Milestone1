@@ -27,7 +27,7 @@ public class Login extends javax.swing.JPanel {
         jLabel1.setText("SECURITY Svcs");
         jLabel1.setToolTipText("");
 
-        jLabel2.setFont(new java.awt.Font("Arial", Font.PLAIN, 20));
+        jLabel2.setFont(new java.awt.Font("Arial", Font.PLAIN, 15));
         jLabel2.setForeground(Color.RED);
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("");
@@ -104,16 +104,22 @@ public class Login extends javax.swing.JPanel {
         int failedAttempts = 0;
         String username = jTextField1.getText();
         String password = String.valueOf(jTextField2.getPassword());
+        setUsernameFieldBlack();
+        setPasswordFieldBlack();
         if (username.isEmpty() || password.isEmpty()) {
             frame.loginNav();
             if (username.isEmpty() && password.isEmpty()) {
-                setWarning("Username and password fields are empty!");
+                jLabel2.setText("Username and password fields are empty!");
+                setUsernameFieldRed();
+                setPasswordFieldRed();
             }
             else if (username.isEmpty()){
-                setWarning("Username field is empty!");
+                jLabel2.setText("Username field is empty!");
+                setUsernameFieldRed();
             }
             else {
-                setWarning("Password field is empty!");
+                jLabel2.setText("Password field is empty!");
+                setPasswordFieldRed();
             }
         }
         else {
@@ -124,7 +130,7 @@ public class Login extends javax.swing.JPanel {
             }
             else {
                 frame.loginNav();
-                setWarning("Invalid credentials!");
+                jLabel2.setText("Invalid credentials!");
                 failedAttempts+=1;
             }
         }
@@ -138,25 +144,6 @@ public class Login extends javax.swing.JPanel {
         setNormal();
         frame.registerNav();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void setWarning(String warning) {
-        setUsernameFieldBlack();
-        setPasswordFieldBlack();
-        jLabel2.setText(warning);
-        jLabel2.setEnabled(true);
-        if ((jLabel2.getText().toLowerCase().contains("username") &&
-                jLabel2.getText().toLowerCase().contains("password")) |
-        jLabel2.getText().toLowerCase().equals("invalid credentials!")) {
-            setUsernameFieldRed();
-            setPasswordFieldRed();
-        }
-        else if (jLabel2.getText().toLowerCase().contains("username")) {
-            setUsernameFieldRed();
-        }
-        else {
-            setPasswordFieldRed();
-        }
-    }
 
     private void setUsernameFieldRed() {
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(Color.RED, 2, true), "USERNAME", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
