@@ -27,11 +27,11 @@ public class Frame extends javax.swing.JFrame {
         clientBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
 
         HomePnl.setBackground(new java.awt.Color(102, 102, 102));
-        HomePnl.setPreferredSize(new java.awt.Dimension(801, 500));
+        HomePnl.setPreferredSize(new Dimension(801, 500));
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
@@ -153,9 +153,9 @@ public class Frame extends javax.swing.JFrame {
         Container.setLayout(ContainerLayout);
         ContainerLayout.setHorizontalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
             .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(HomePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(HomePnl, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
         );
         ContainerLayout.setVerticalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,18 +179,22 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminBtnActionPerformed() {//GEN-FIRST:event_adminBtnActionPerformed
+        adminHomePnl.showPnl("home");
         contentView.show(Content, "adminHomePnl");
     }//GEN-LAST:event_adminBtnActionPerformed
 
     private void managerBtnActionPerformed() {//GEN-FIRST:event_managerBtnActionPerformed
+        managerHomePnl.showPnl("home");
         contentView.show(Content, "managerHomePnl");
     }//GEN-LAST:event_managerBtnActionPerformed
 
     private void staffBtnActionPerformed() {//GEN-FIRST:event_staffBtnActionPerformed
+        staffHomePnl.showPnl("home");
         contentView.show(Content, "staffHomePnl");
     }//GEN-LAST:event_staffBtnActionPerformed
 
     private void clientBtnActionPerformed() {//GEN-FIRST:event_clientBtnActionPerformed
+        clientHomePnl.showPnl("home");
         contentView.show(Content, "clientHomePnl");
     }//GEN-LAST:event_clientBtnActionPerformed
 
@@ -206,19 +210,23 @@ public class Frame extends javax.swing.JFrame {
     private ManagerHome managerHomePnl = new ManagerHome();
     private StaffHome staffHomePnl = new StaffHome();
     private ClientHome clientHomePnl = new ClientHome();
-    private DisabledHome disabledHomePnl = new DisabledHome();
     
     private CardLayout contentView = new CardLayout();
     private CardLayout frameView = new CardLayout();
     
     public void init(Main controller){
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle("SECURDE");
+        this.setTitle("SECURDE - SECURITY Svcs");
         this.setLocationRelativeTo(null);
         
         this.main = controller;
         loginPnl.frame = this;
         registerPnl.frame = this;
+        
+        adminHomePnl.init(main.sqlite);
+        clientHomePnl.init(main.sqlite);
+        managerHomePnl.init(main.sqlite);
+        staffHomePnl.init(main.sqlite);
         
         Container.setLayout(frameView);
         Container.add(loginPnl, "loginPnl");
@@ -231,13 +239,10 @@ public class Frame extends javax.swing.JFrame {
         Content.add(managerHomePnl, "managerHomePnl");
         Content.add(staffHomePnl, "staffHomePnl");
         Content.add(clientHomePnl, "clientHomePnl");
-        Content.add(disabledHomePnl, "disabledHomePnl");
-
         
         this.setVisible(true);
-        setResizable(false);
     }
-    
+
     public void mainNav(String username, int role){
         switch (role) {
             case 5: {
@@ -270,7 +275,6 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
                 clientBtn.setVisible(true);
-                clientHomePnl.setUsername(username);
                 break;
             }
             case 1: {
@@ -284,7 +288,8 @@ public class Frame extends javax.swing.JFrame {
         }
         frameView.show(Container, "homePnl");
     }
-    
+
+
     public void loginNav(){
         frameView.show(Container, "loginPnl");
     }

@@ -4,18 +4,20 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private int role;
+    private int role = 2;
+    private int locked = 0;
 
     public User(String username, String password){
         this.username = username;
         this.password = password;
     }
     
-    public User(int id, String username, String password, int role){
+    public User(int id, String username, String password, int role, int locked){
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.locked = locked;
     }
     
     public int getId() {
@@ -48,5 +50,13 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public int getLocked() {
+        return locked;
+    }
+
+    public void setLocked(int locked) {
+        this.locked = locked;
     }
 }
