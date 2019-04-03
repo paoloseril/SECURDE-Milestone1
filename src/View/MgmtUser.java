@@ -8,12 +8,7 @@ package View;
 import Controller.SQLite;
 import Model.User;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,7 +32,23 @@ public class MgmtUser extends JPanel {
 //        lockBtn.setVisible(false);
 //        chgpassBtn.setVisible(false);
     }
-    
+
+    public void setDeleteBtn(boolean visible) {
+        deleteBtn.setVisible(visible);
+    }
+
+    public void setEditRoleBtn(boolean visible) {
+        editRoleBtn.setVisible(visible);
+    }
+
+    public void setLockBtn(boolean visible) {
+        lockBtn.setVisible(visible);
+    }
+
+    public void setChgpassBtn(boolean visible) {
+        chgpassBtn.setVisible(visible);
+    }
+
     public void init(){
         //      CLEAR TABLE
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){

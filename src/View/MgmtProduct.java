@@ -35,6 +35,22 @@ public class MgmtProduct extends JPanel {
 //        deleteBtn.setVisible(false);
     }
 
+    public void setDeleteBtn(boolean visible) {
+        deleteBtn.setVisible(visible);
+    }
+
+    public void setEditBtn(boolean visible) {
+        editBtn.setVisible(visible);
+    }
+
+    public void setAddBtn(boolean visible) {
+        addBtn.setVisible(visible);
+    }
+
+    public void setPurchaseBtn(boolean visible) {
+        purchaseBtn.setVisible(visible);
+    }
+
     public void init(){
         //      CLEAR TABLE
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){

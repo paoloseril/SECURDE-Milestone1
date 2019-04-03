@@ -241,6 +241,7 @@ public class Frame extends javax.swing.JFrame {
         Content.add(clientHomePnl, "clientHomePnl");
         
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     public void mainNav(String username, int role){

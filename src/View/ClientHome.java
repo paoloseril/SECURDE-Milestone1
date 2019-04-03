@@ -44,6 +44,10 @@ public class ClientHome extends javax.swing.JPanel {
         Content.add(mgmtHistory, "mgmtHistory");
         Content.add(mgmtProduct, "mgmtProduct");
         Content.add(mgmtLogs, "mgmtLogs");
+
+        mgmtProduct.setAddBtn(false);
+        mgmtProduct.setEditBtn(false);
+        mgmtProduct.setDeleteBtn(false);
         
 //        UNCOMMENT TO DISABLE BUTTONS
 //        historyBtn.setVisible(false);
@@ -81,6 +85,8 @@ public class ClientHome extends javax.swing.JPanel {
                 usersBtnActionPerformed(evt);
             }
         });
+
+        usersBtn.setVisible(false);
 
         productsBtn.setBackground(new Color(255, 255, 255));
         productsBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -121,6 +127,8 @@ public class ClientHome extends javax.swing.JPanel {
                 logsBtnActionPerformed(evt);
             }
         });
+
+        logsBtn.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -238,8 +238,8 @@ public class SQLite {
         String sql = "INSERT INTO users(username,password) VALUES('" + username + "','" + encrypted_password + "')";
         
         try (Connection conn = DriverManager.getConnection(driverURL);
-            Statement stmt = conn.createStatement()){
-            stmt.execute(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.executeUpdate(sql);
             
 //  For this activity, we would not be using prepared statements first.
 //      String sql = "INSERT INTO users(username,password) VALUES(?,?)";
