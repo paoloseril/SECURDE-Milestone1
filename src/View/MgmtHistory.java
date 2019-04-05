@@ -52,7 +52,8 @@ public class MgmtHistory extends javax.swing.JPanel {
         }
         
 //      LOAD CONTENTS
-        ArrayList<History> history = sqlite.getHistory(currentUser);
+
+        ArrayList<History> history = currentUser != null ? sqlite.getHistory(currentUser) :  sqlite.getHistory();
         for(int nCtr = 0; nCtr < history.size(); nCtr++){
             Product product = sqlite.getProduct(history.get(nCtr).getName());
             tableModel.addRow(new Object[]{
@@ -64,18 +65,6 @@ public class MgmtHistory extends javax.swing.JPanel {
                 history.get(nCtr).getTimestamp()
             });
         }
-
-        searchBtn.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (tableModel.getRowCount() == 0) {
-                    searchBtn.setEnabled(false);
-                }
-                else {
-                    searchBtn.setEnabled(true);
-                }
-            }
-        });
     }
 
     public void setSearchBtnText(String text) {
