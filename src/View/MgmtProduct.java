@@ -236,9 +236,19 @@ public class MgmtProduct extends JPanel {
         int result = JOptionPane.showConfirmDialog(null, message, "ADD PRODUCT", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
         if (result == JOptionPane.OK_OPTION) {
-            System.out.println(nameFld.getText());
-            System.out.println(stockFld.getText());
-            System.out.println(priceFld.getText());
+            // data validation
+            if (!nameFld.getText().matches("([A-Za-z0-9]+\\s)*[A-Za-z0-9]+")) {
+                JOptionPane.showMessageDialog(this, "Product name is not valid!");
+            }
+            else if (!stockFld.getText().matches("[0-9]+")) {
+                JOptionPane.showMessageDialog(this, "Stock value not a valid number!");
+            }
+            else if (!priceFld.getText().matches("[0-9]+(\\.[0-9]+)?")) {
+                JOptionPane.showMessageDialog(this, "Invalid price!");
+            }
+            else {
+
+            }
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -259,9 +269,19 @@ public class MgmtProduct extends JPanel {
             int result = JOptionPane.showConfirmDialog(null, message, "EDIT PRODUCT", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
             if (result == JOptionPane.OK_OPTION) {
-                System.out.println(nameFld.getText());
-                System.out.println(stockFld.getText());
-                System.out.println(priceFld.getText());
+                // data validation
+                if (!nameFld.getText().matches("([A-Za-z0-9]+\\s)*[A-Za-z0-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Product name is not valid!");
+                }
+                else if (!stockFld.getText().matches("[0-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Stock value not a valid number!");
+                }
+                else if (!priceFld.getText().matches("[0-9]+(\\.[0-9]+)?")) {
+                    JOptionPane.showMessageDialog(this, "Invalid price!");
+                }
+                else {
+
+                }
             }
         }
     }//GEN-LAST:event_editBtnActionPerformed
