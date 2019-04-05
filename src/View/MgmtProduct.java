@@ -8,9 +8,7 @@ package View;
 import Controller.SQLite;
 import Model.Product;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -202,6 +200,22 @@ public class MgmtProduct extends JPanel {
 
             if (result == JOptionPane.OK_OPTION) {
                 System.out.println(stockFld.getText());
+
+                // data validation
+                if (!stockFld.getText().matches("[1-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Value entered is not a valid number!");
+                }
+                else {
+                    // check inventory
+                    int purchaseNumber = Integer.parseInt(stockFld.getText());
+                    if (!(sqlite.getProduct((String) tableModel.getValueAt(table.getSelectedRow(), 0)).getStock() >= purchaseNumber)) {
+                        JOptionPane.showMessageDialog
+                                (this, String.format("Value entered is greater than the total stock of %s", (String) tableModel.getValueAt(table.getSelectedRow(), 0)));
+                    }
+                    else {
+
+                    }
+                }
             }
         }
     }//GEN-LAST:event_purchaseBtnActionPerformed

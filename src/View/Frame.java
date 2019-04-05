@@ -85,11 +85,6 @@ public class Frame extends javax.swing.JFrame {
         clientBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         clientBtn.setText("Client Home");
         clientBtn.setFocusable(false);
-        clientBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientBtnActionPerformed();
-            }
-        });
 
         logoutBtn.setBackground(new java.awt.Color(250, 250, 250));
         logoutBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -193,7 +188,8 @@ public class Frame extends javax.swing.JFrame {
         contentView.show(Content, "staffHomePnl");
     }//GEN-LAST:event_staffBtnActionPerformed
 
-    private void clientBtnActionPerformed() {//GEN-FIRST:event_clientBtnActionPerformed
+    private void clientBtnActionPerformed(String username) {//GEN-FIRST:event_clientBtnActionPerformed
+        clientHomePnl.init(main.sqlite, username);
         clientHomePnl.showPnl("home");
         contentView.show(Content, "clientHomePnl");
     }//GEN-LAST:event_clientBtnActionPerformed
@@ -224,7 +220,7 @@ public class Frame extends javax.swing.JFrame {
         registerPnl.frame = this;
         
         adminHomePnl.init(main.sqlite);
-        clientHomePnl.init(main.sqlite);
+        clientHomePnl.init(main.sqlite, "");
         managerHomePnl.init(main.sqlite);
         staffHomePnl.init(main.sqlite);
         
@@ -271,7 +267,7 @@ public class Frame extends javax.swing.JFrame {
                 break;
             }
             case 2: {
-                clientBtnActionPerformed();
+                clientBtnActionPerformed(username);
                 adminBtn.setVisible(false);
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
