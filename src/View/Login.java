@@ -1,26 +1,43 @@
 
 package View;
 
+import Model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends javax.swing.JPanel {
 
     public Frame frame;
+    private Map<String, Integer> attemptCounts;
+
+    private void resetAttemptCounts() {
+        for (Map.Entry<String, Integer> entry : attemptCounts.entrySet()) {
+            attemptCounts.put(entry.getKey(), 0);
+        }
+    }
+
+    private void increaseCount(String user) {
+        attemptCounts.put(user, attemptCounts.get(user) + 1);
+    }
+
+    private int getCount(String user) {
+        return attemptCounts.get(user);
+    }
 
     public Login() {
         initComponents();
     }
 
-    private int failedAttempts;
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        failedAttempts = 0;
+        attemptCounts = new HashMap<>();
+
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new JLabel();
         jLabel3 = new JLabel("You are locked out. Please contact the administrator.");
@@ -159,7 +176,7 @@ public class Login extends javax.swing.JPanel {
                 }
                 else {
                     setNormal();
-                    failedAttempts = 0;
+                    resetAttemptCounts();
                     frame.mainNav(username, role);
                 }
             }
@@ -170,11 +187,12 @@ public class Login extends javax.swing.JPanel {
                 else {
                     jLabel2.setText("Invalid credentials!");
                     if (frame.main.sqlite.userExists(username)) {
-                        failedAttempts += 1;
-                        if (failedAttempts == 3) {
+                        increaseCount(username);
+                        if (getCount(username) == 5) {
                             // set lock out for user
                             frame.main.sqlite.setLockout(username, 1);
                             e_Mode();
+                            resetAttemptCounts();
                         }
                     }
                 }
@@ -205,7 +223,6 @@ public class Login extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setNormal();
-        failedAttempts = 0;
         frame.registerNav();
     }//GEN-LAST:event_jButton1ActionPerformed
 

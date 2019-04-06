@@ -9,6 +9,7 @@ import Controller.SQLite;
 import Model.History;
 import Model.Product;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -23,7 +24,7 @@ public class MgmtHistory extends javax.swing.JPanel {
     public SQLite sqlite;
     public DefaultTableModel tableModel;
     private String currentUser;
-    
+
     public MgmtHistory(SQLite sqlite) {
         initComponents();
         this.sqlite = sqlite;

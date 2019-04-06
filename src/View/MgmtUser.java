@@ -8,6 +8,8 @@ package View;
 import Controller.SQLite;
 import Model.User;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +21,6 @@ public class MgmtUser extends JPanel {
 
     public SQLite sqlite;
     public DefaultTableModel tableModel;
-    
     public MgmtUser(SQLite sqlite) {
         initComponents();
         this.sqlite = sqlite;
