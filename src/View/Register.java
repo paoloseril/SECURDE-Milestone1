@@ -1,6 +1,8 @@
 
 package View;
 
+import Values.Constant;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -197,6 +199,7 @@ public class Register extends javax.swing.JPanel {
                 frame.registerAction(user_name, pass_word, conf_pass);
                 JOptionPane.showMessageDialog(this, "User has been successfully registered.");
                 setNormal();
+                Constant.attemptCounts.put(user_name, 0);
                 frame.loginNav();
             }
             else {

@@ -44,7 +44,9 @@ public class StaffHome extends javax.swing.JPanel {
         Content.add(mgmtHistory, "mgmtHistory");
         Content.add(mgmtProduct, "mgmtProduct");
         Content.add(mgmtLogs, "mgmtLogs");
-        
+
+        mgmtHistory.setSearchBtnText("SEARCH USERNAME");
+
 //        UNCOMMENT TO DISABLE BUTTONS
 //        historyBtn.setVisible(false);
 //        usersBtn.setVisible(false);

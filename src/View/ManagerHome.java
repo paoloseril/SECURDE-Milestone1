@@ -46,6 +46,7 @@ public class ManagerHome extends javax.swing.JPanel {
         Content.add(mgmtLogs, "mgmtLogs");
 
         mgmtProduct.setPurchaseBtn(false);
+        mgmtHistory.setSearchBtnText("SEARCH USERNAME");
 //        UNCOMMENT TO DISABLE BUTTONS
 //        historyBtn.setVisible(false);
 //        usersBtn.setVisible(false);

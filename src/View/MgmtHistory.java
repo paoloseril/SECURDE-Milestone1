@@ -73,7 +73,7 @@ public class MgmtHistory extends javax.swing.JPanel {
         designer(new JTextField("0"), text);
     }
 
-    public void designer(JTextField component, String text){
+    public void designer(JTextField component, String text, JRadioButton... rb){
         component.setSize(70, 600);
         component.setFont(new java.awt.Font("Tahoma", 0, 18));
         component.setBackground(new java.awt.Color(240, 240, 240));
@@ -183,32 +183,80 @@ public class MgmtHistory extends javax.swing.JPanel {
 
         if (result == JOptionPane.OK_OPTION) {
             // data validation
-            if (!searchFld.getText().matches("[A-Za-z0-9]+")) {
-
-            }
-            else {
-                //          CLEAR TABLE
-                for (int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--) {
-                    tableModel.removeRow(0);
+            // product (client)
+            if (searchBtn.getText().toLowerCase().contains("product")) {
+                if (!searchFld.getText().matches("([A-Za-z0-9]+\\s)*[A-Za-z0-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Not a valid product name!");
+                    init();
                 }
+                else {
+                    //          CLEAR TABLE
+                    for (int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--) {
+                        tableModel.removeRow(0);
+                    }
 
 //          LOAD CONTENTS
-                ArrayList<History> history = sqlite.getHistory(currentUser, searchFld.getText().toLowerCase());
-                for (int nCtr = 0; nCtr < history.size(); nCtr++) {
-                    if (searchFld.getText().contains(history.get(nCtr).getUsername()) ||
-                            history.get(nCtr).getUsername().contains(searchFld.getText()) ||
-                            searchFld.getText().contains(history.get(nCtr).getName()) ||
-                            history.get(nCtr).getName().contains(searchFld.getText())) {
+                    ArrayList<History> history = sqlite.getHistory(currentUser, searchFld.getText().toLowerCase());
+                    if (history.size() != 0) {
+                        for (int nCtr = 0; nCtr < history.size(); nCtr++) {
+                            if (searchFld.getText().contains(history.get(nCtr).getUsername()) ||
+                                    history.get(nCtr).getUsername().contains(searchFld.getText()) ||
+                                    searchFld.getText().contains(history.get(nCtr).getName()) ||
+                                    history.get(nCtr).getName().contains(searchFld.getText())) {
 
-                        Product product = sqlite.getProduct(history.get(nCtr).getName());
-                        tableModel.addRow(new Object[]{
-                                history.get(nCtr).getUsername(),
-                                history.get(nCtr).getName(),
-                                history.get(nCtr).getStock(),
-                                product.getPrice(),
-                                product.getPrice() * history.get(nCtr).getStock(),
-                                history.get(nCtr).getTimestamp()
-                        });
+                                Product product = sqlite.getProduct(history.get(nCtr).getName());
+                                tableModel.addRow(new Object[]{
+                                        history.get(nCtr).getUsername(),
+                                        history.get(nCtr).getName(),
+                                        history.get(nCtr).getStock(),
+                                        product.getPrice(),
+                                        product.getPrice() * history.get(nCtr).getStock(),
+                                        history.get(nCtr).getTimestamp()
+                                });
+                            }
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "No purchase history found for " + searchFld.getText() + "!");
+                        init();
+                    }
+                }
+            }
+            else if (searchBtn.getText().toLowerCase().contains("username")) {
+                if (!searchFld.getText().matches("[A-Za-z0-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Not a valid username!");
+                    init();
+                }
+                else {
+                    //          CLEAR TABLE
+                    for (int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--) {
+                        tableModel.removeRow(0);
+                    }
+
+//          LOAD CONTENTS
+                    ArrayList<History> history = sqlite.getHistory(searchFld.getText());
+                    if (history.size() != 0) {
+                        for (int nCtr = 0; nCtr < history.size(); nCtr++) {
+                            if (searchFld.getText().contains(history.get(nCtr).getUsername()) ||
+                                    history.get(nCtr).getUsername().contains(searchFld.getText()) ||
+                                    searchFld.getText().contains(history.get(nCtr).getName()) ||
+                                    history.get(nCtr).getName().contains(searchFld.getText())) {
+
+                                Product product = sqlite.getProduct(history.get(nCtr).getName());
+                                tableModel.addRow(new Object[]{
+                                        history.get(nCtr).getUsername(),
+                                        history.get(nCtr).getName(),
+                                        history.get(nCtr).getStock(),
+                                        product.getPrice(),
+                                        product.getPrice() * history.get(nCtr).getStock(),
+                                        history.get(nCtr).getTimestamp()
+                                });
+                            }
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "No purchase history found for user " + searchFld.getText());
+                        init();
                     }
                 }
             }
