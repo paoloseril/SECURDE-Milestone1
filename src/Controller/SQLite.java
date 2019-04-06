@@ -273,7 +273,7 @@ public class SQLite {
     public void addUser(String username, String password) {
 
         String encrypted_password = AES.encrypt(password);
-        String sql = String.format("INSERT INTO users(username,password) VALUES(%s, %s)", username, encrypted_password);
+        String sql = "INSERT INTO users(username,password) VALUES('" + username + "', '" + encrypted_password + "')";
         
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()) {
@@ -290,9 +290,9 @@ public class SQLite {
         }
     }
 
-    // should be between 10 to 15 characters in length
+    // should be between 8 to 15 characters in length
     public boolean isAcceptable(String username, String password) {
-        if (password.length() < 10 || password.length() > 15
+        if (password.length() < 8 || password.length() > 15
         || username.length() < 5 || username.length() > 15) {
             return false;
         }
@@ -308,7 +308,7 @@ public class SQLite {
         }
     }
 
-    private boolean passwordValidity(String password) {
+    public boolean passwordValidity(String password) {
         int ucCount = 0;
         int lcCount = 0;
         int numCount = 0;
@@ -332,7 +332,7 @@ public class SQLite {
                 symCount += 1;
             }
         }
-        return ucCount >= 2 && lcCount >= 3 && numCount >= 2 && symCount >= 3;
+        return ucCount >= 2 && lcCount >= 3 && numCount >= 2 && symCount >= 1;
     }
 
     public void addUser(String username, String password, int role) {
@@ -412,6 +412,18 @@ public class SQLite {
         return product;
     }
 
+    public void setPassword(String user, String password) {
+        try (Connection conn = DriverManager.getConnection(driverURL)
+        ){
+            String query = "UPDATE users SET password = ? WHERE lower(username) = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString(1, AES.encrypt(password));
+            preparedStmt.setString(2, user);
+
+            preparedStmt.executeUpdate();
+
+        } catch (Exception ex) {}
+    }
     public void setLockout(String user, int lockout) {
         try (Connection conn = DriverManager.getConnection(driverURL)
              ){

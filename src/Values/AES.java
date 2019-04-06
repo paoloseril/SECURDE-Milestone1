@@ -1,6 +1,7 @@
 package Values;
 
 import javax.crypto.Cipher;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class AES {
@@ -11,7 +12,7 @@ public class AES {
         {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, Constant.secretKey());
-            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
         }
         catch (Exception e)
         {
@@ -24,7 +25,7 @@ public class AES {
     {
         try
         {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, Constant.secretKey());
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         }

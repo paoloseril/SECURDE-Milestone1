@@ -223,7 +223,7 @@ public class MgmtHistory extends javax.swing.JPanel {
                 }
             }
             else if (searchBtn.getText().toLowerCase().contains("username")) {
-                if (!searchFld.getText().matches("[A-Za-z0-9]+")) {
+                if (!searchFld.getText().matches("[a-zA-Z0-9_]{5,15}")) {
                     JOptionPane.showMessageDialog(this, "Not a valid username!");
                     init();
                 }

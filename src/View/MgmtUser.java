@@ -252,8 +252,22 @@ public class MgmtUser extends JPanel {
             int result = JOptionPane.showConfirmDialog(null, message, "CHANGE PASSWORD", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
             
             if (result == JOptionPane.OK_OPTION) {
-                System.out.println(password.getText());
-                System.out.println(confpass.getText());
+                if (password.getText().isEmpty() || confpass.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "One or more fields is empty!");
+                }
+                else if (!password.getText().equals(confpass.getText())) {
+                    JOptionPane.showMessageDialog(null, "Password and confirm password do not match!");
+                }
+                else {
+                    if (!sqlite.passwordValidity(password.getText())) {
+                        JOptionPane.showMessageDialog(null, "New password does not follow the rules!");
+                    }
+                    else {
+                        sqlite.setPassword(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), password.getText());
+                        JOptionPane.showMessageDialog(null, "Password for user " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been successfully changed!");
+                        init();
+                    }
+                }
             }
         }
     }//GEN-LAST:event_chgpassBtnActionPerformed

@@ -62,14 +62,14 @@ public class Register extends javax.swing.JPanel {
         jLabel2.setForeground(Color.BLACK);
         jLabel2.setSize(100, 40);
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Password should be between 10 to 15 characters in length and should have");
+        jLabel2.setText("Password should be between 8 to 15 characters in length and should have");
         jLabel2.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("Arial", Font.PLAIN, 15));
         jLabel3.setForeground(Color.BLACK);
         jLabel3.setSize(100, 40);
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("at least 2 uppercase letters, 3 lowercase letters, 2 digits and 3 symbols (except quotes))");
+        jLabel3.setText("at least 2 uppercase letters, 3 lowercase letters, 2 digits and 1 symbol (except quotes))");
         jLabel3.setToolTipText("");
 
         jLabel4.setFont(new java.awt.Font("Arial", Font.PLAIN, 15));
@@ -197,7 +197,7 @@ public class Register extends javax.swing.JPanel {
             if (frame.main.sqlite.isAcceptable(user_name, pass_word)) {
                 // alert that user has been registered
                 frame.registerAction(user_name, pass_word, conf_pass);
-                JOptionPane.showMessageDialog(this, "User has been successfully registered.");
+                JOptionPane.showMessageDialog(null, "User has been successfully registered.");
                 setNormal();
                 Constant.attemptCounts.put(user_name, 0);
                 frame.loginNav();
