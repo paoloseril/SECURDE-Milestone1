@@ -291,11 +291,21 @@ public class SQLite {
     }
 
     // should be between 10 to 15 characters in length
-    public boolean isAcceptable(String password) {
-        if (password.length() < 10 || password.length() > 15) {
+    public boolean isAcceptable(String username, String password) {
+        if (password.length() < 10 || password.length() > 15
+        || username.length() < 5 || username.length() > 15) {
             return false;
         }
-        else return passwordValidity(password);
+        else return usernameValidity(username) && passwordValidity(password);
+    }
+
+    private boolean usernameValidity(String username) {
+        if (username.contains("'") || username.contains("\"")) {
+            return false;
+        }
+        else {
+            return username.matches("[a-zA-Z0-9_]+");
+        }
     }
 
     private boolean passwordValidity(String password) {

@@ -194,7 +194,7 @@ public class Register extends javax.swing.JPanel {
             jLabel4.setText("The username already exists. Please use a different username!");
         }
         else {
-            if (frame.main.sqlite.isAcceptable(pass_word)) {
+            if (frame.main.sqlite.isAcceptable(user_name, pass_word)) {
                 // alert that user has been registered
                 frame.registerAction(user_name, pass_word, conf_pass);
                 JOptionPane.showMessageDialog(this, "User has been successfully registered.");
@@ -205,7 +205,7 @@ public class Register extends javax.swing.JPanel {
             else {
                 jLabel2.setForeground(Color.RED);
                 jLabel3.setForeground(Color.RED);
-                jLabel4.setText("Password entered does not follow the rules!");
+                jLabel4.setText("Username or password entered does not follow the rules!");
                 setPasswordFieldRed();
                 frame.registerNav();
             }
