@@ -1,6 +1,9 @@
 package View;
 
 import Controller.Main;
+import Model.User;
+import Values.Constant;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -238,6 +241,10 @@ public class Frame extends javax.swing.JFrame {
         
         this.setVisible(true);
         this.setResizable(false);
+
+        for (User u: main.sqlite.getUsers()) {
+            Constant.attemptCounts.put(u.getUsername(), 0);
+        }
     }
 
     public void mainNav(String username, int role){

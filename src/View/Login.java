@@ -2,6 +2,7 @@
 package View;
 
 import Model.User;
+import Values.Constant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,30 +14,28 @@ import java.util.Map;
 public class Login extends javax.swing.JPanel {
 
     public Frame frame;
-    private Map<String, Integer> attemptCounts;
 
     private void resetAttemptCounts() {
-        for (Map.Entry<String, Integer> entry : attemptCounts.entrySet()) {
-            attemptCounts.put(entry.getKey(), 0);
+        for (Map.Entry<String, Integer> entry : Constant.attemptCounts.entrySet()) {
+            Constant.attemptCounts.put(entry.getKey(), 0);
         }
     }
 
     private void increaseCount(String user) {
-        attemptCounts.put(user, attemptCounts.get(user) + 1);
+        Constant.attemptCounts.put(user, Constant.attemptCounts.get(user) + 1);
     }
 
     private int getCount(String user) {
-        return attemptCounts.get(user);
+        return Constant.attemptCounts.get(user);
     }
 
     public Login() {
         initComponents();
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        attemptCounts = new HashMap<>();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new JLabel();

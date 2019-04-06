@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Constant {
 
@@ -21,4 +23,7 @@ public class Constant {
         }
         return null;
     }
+
+    public static Map<String, Integer> attemptCounts = new HashMap<>();
+
 }
