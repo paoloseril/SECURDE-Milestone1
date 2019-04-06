@@ -226,7 +226,13 @@ public class MgmtUser extends JPanel {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to " + state + " " + tableModel.getValueAt(table.getSelectedRow(), 0) + "?", "DELETE USER", JOptionPane.YES_NO_OPTION);
             
             if (result == JOptionPane.YES_OPTION) {
-                System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
+                if (state.equals("unlock")) {
+                    sqlite.setLockout(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), 0);
+                }
+                else {
+                    sqlite.setLockout(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), 1);
+                }
+                init();
             }
         }
     }//GEN-LAST:event_lockBtnActionPerformed

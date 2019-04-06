@@ -3,6 +3,8 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login extends javax.swing.JPanel {
 
@@ -21,10 +23,31 @@ public class Login extends javax.swing.JPanel {
         failedAttempts = 0;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new JLabel();
+        jLabel3 = new JLabel("You are locked out. Please contact the administrator.");
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new JButton("Back!");
+
+        jButton3.setVisible(false);
+        jButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jButton3.setVisible(false);
+                jLabel3.setVisible(false);
+                jLabel1.setVisible(true);
+                jLabel2.setVisible(true);
+                jTextField1.setVisible(true);
+                jTextField2.setVisible(true);
+                jButton1.setVisible(true);
+                jButton2.setVisible(true);
+                jTextField1.setEnabled(true);
+                jTextField2.setEnabled(true);
+                jButton1.setEnabled(true);
+                jButton2.setEnabled(true);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", Font.BOLD, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -55,6 +78,7 @@ public class Login extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        jLabel3.setVisible(false);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton2.setForeground(Color.BLACK);
@@ -77,8 +101,9 @@ public class Login extends javax.swing.JPanel {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-
-                                        .addComponent(jTextField1)
+                                        .addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, GroupLayout.DEFAULT_SIZE)
+                                .addComponent(jTextField1)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 
                                         .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
@@ -91,8 +116,10 @@ public class Login extends javax.swing.JPanel {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
                                 .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
 
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,16 +154,29 @@ public class Login extends javax.swing.JPanel {
         else {
             int role = frame.main.sqlite.authenticate(username, password);
             if (role != -99) {
-                setNormal();
-                failedAttempts = 0;
-                frame.mainNav(username, role);
+                if (frame.main.sqlite.isLocked(username)) {
+                    e_Mode();
+                }
+                else {
+                    setNormal();
+                    failedAttempts = 0;
+                    frame.mainNav(username, role);
+                }
             }
             else {
-                jLabel2.setText("Invalid credentials!");
-                System.out.println(failedAttempts);
-                failedAttempts += 1;
-                if (failedAttempts == 3) {
+                if (frame.main.sqlite.isLocked(username)) {
                     e_Mode();
+                }
+                else {
+                    jLabel2.setText("Invalid credentials!");
+                    if (frame.main.sqlite.userExists(username)) {
+                        failedAttempts += 1;
+                        if (failedAttempts == 3) {
+                            // set lock out for user
+                            frame.main.sqlite.setLockout(username, 1);
+                            e_Mode();
+                        }
+                    }
                 }
             }
         }
@@ -144,14 +184,25 @@ public class Login extends javax.swing.JPanel {
         jTextField2.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
     private void e_Mode() {
         setNormal();
-        jLabel2.setText("The app is locked out. Please contact the administrator.");
+        jButton3.setVisible(true);
+        jLabel3.setVisible(true);
+        jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
+        jTextField1.setVisible(false);
+        jTextField2.setVisible(false);
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
+
     }
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setNormal();
         failedAttempts = 0;
@@ -185,8 +236,9 @@ public class Login extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private JLabel jLabel2;
+    private JLabel jLabel2, jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField jTextField2;
     // End of variables declaration//GEN-END:variables

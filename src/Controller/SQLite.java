@@ -148,16 +148,12 @@ public class SQLite {
     }
 
     public ArrayList<History> getHistory(String username, String product){
-        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = ? and lower(name) = ?";
-        ArrayList<History> histories = new ArrayList<History>();
+        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = " + username.toLowerCase()  + " and lower(name) = " + product.toLowerCase();
+        ArrayList<History> histories = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(driverURL);
-             ){
-
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username.toLowerCase());
-            stmt.setString(2, product.toLowerCase());
-            ResultSet rs = stmt.executeQuery(sql);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()) {
                 histories.add(new History(rs.getInt("id"),
@@ -171,15 +167,12 @@ public class SQLite {
     }
 
     public ArrayList<History> getHistory(String username){
-        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = ?";
+        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = " + username.toLowerCase();
         ArrayList<History> histories = new ArrayList<History>();
 
         try (Connection conn = DriverManager.getConnection(driverURL);
-        ){
-
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username.toLowerCase());
-            ResultSet rs = stmt.executeQuery(sql);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()) {
                 histories.add(new History(rs.getInt("id"),
@@ -280,10 +273,10 @@ public class SQLite {
     public void addUser(String username, String password) {
 
         String encrypted_password = AES.encrypt(password);
-        String sql = "INSERT INTO users(username,password) VALUES(?, ?)";
+        String sql = String.format("INSERT INTO users(username,password) VALUES(%s, %s)", username, encrypted_password);
         
         try (Connection conn = DriverManager.getConnection(driverURL);
-            PreparedStatement stmt = conn.prepareStatement(sql)){
+            Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(sql);
             
 //  For this activity, we would not be using prepared statements first.
@@ -363,7 +356,7 @@ public class SQLite {
     }
     public int authenticate(String username, String password) {
 
-        String sql = "select * from users where username = '" + username + "'";
+        String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement();
@@ -404,5 +397,33 @@ public class SQLite {
                     rs.getFloat("price"));
         } catch (Exception ex) {}
         return product;
+    }
+
+    public void setLockout(String user, int lockout) {
+        try (Connection conn = DriverManager.getConnection(driverURL)
+             ){
+            String query = "UPDATE users SET locked = ? WHERE lower(username) = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt   (1, lockout);
+            preparedStmt.setString(2, user);
+
+            preparedStmt.executeUpdate();
+
+        } catch (Exception ex) {}
+    }
+
+    public boolean isLocked(String user) {
+        String sql = "select * from users where lower(username) = '" + user.toLowerCase() + "' and locked = 1";
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }
