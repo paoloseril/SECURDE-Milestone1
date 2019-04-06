@@ -290,10 +290,9 @@ public class SQLite {
         }
     }
 
-    // should be between 8 to 15 characters in length
     public boolean isAcceptable(String username, String password) {
         if (password.length() < 8 || password.length() > 15
-        || username.length() < 5 || username.length() > 15) {
+        || username.length() < 6 || username.length() > 15) {
             return false;
         }
         else return usernameValidity(username) && passwordValidity(password);
