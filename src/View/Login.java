@@ -39,7 +39,7 @@ public class Login extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new JLabel();
-        jLabel3 = new JLabel("You are locked out. Please contact the administrator.");
+        jLabel3 = new JLabel("You are locked out. Please contact I.T. support.");
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
