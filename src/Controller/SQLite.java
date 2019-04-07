@@ -261,8 +261,38 @@ public class SQLite {
         } catch (Exception ex) {}
     }
 
+    public void deleteLogs(String timestamp) {
+        String sql = "DELETE FROM logs WHERE timestamp = '" + timestamp + "'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
+
+
+    public void deleteProduct(String name){
+
+        String sql = "DELETE FROM product WHERE name = '" + name +"';";
+        System.out.println(name);
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
     public void addProduct(String name, int stock, double price) {
         String sql = "INSERT INTO product(name,stock,price) VALUES('" + name + "','" + stock + "','" + price + "')";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
+    public void editProduct(String name, int stock, double price){
+        String sql = "UPDATE product SET name = '" + name + " ', stock = ' " + stock + " ', price = '" + price + "' WHERE name = '" + name + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement()){
@@ -273,8 +303,8 @@ public class SQLite {
     public void addUser(String username, String password) {
 
         String encrypted_password = AES.encrypt(password);
-        String sql = String.format("INSERT INTO users(username,password) VALUES(%s, %s)", username, encrypted_password);
-        
+        String sql = "INSERT INTO users(username,password) VALUES('" + username + "', '" + encrypted_password + "')";
+
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(sql);

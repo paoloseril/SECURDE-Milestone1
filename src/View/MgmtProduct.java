@@ -6,8 +6,12 @@
 package View;
 
 import Controller.SQLite;
+import Controller.Main;
 import Model.Product;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MgmtProduct extends JPanel {
 
+    public Main main;
     public SQLite sqlite;
     public DefaultTableModel tableModel;
     
@@ -248,6 +253,16 @@ public class MgmtProduct extends JPanel {
             }
             else {
 
+                int tempInt = Integer.parseInt(stockFld.getText());
+                double tempPrice = Double.parseDouble(priceFld.getText());
+                this.sqlite.addProduct(nameFld.getText(), tempInt, tempPrice);
+
+                String tempLog = "Added a product (" + nameFld.getText() + ")";
+
+                Timestamp timestamp = new Timestamp(new Date().getTime());
+                String timestamp2 = timestamp.toString();
+
+                this.sqlite.addLogs("NOTICE","Staff", tempLog, timestamp2);
             }
         }
     }//GEN-LAST:event_addBtnActionPerformed
@@ -280,6 +295,9 @@ public class MgmtProduct extends JPanel {
                     JOptionPane.showMessageDialog(this, "Invalid price!");
                 }
                 else {
+                    int tempInt = Integer.parseInt(stockFld.getText());
+                    double tempPrice = Double.parseDouble(priceFld.getText());
+                    this.sqlite.editProduct(nameFld.getText(), tempInt, tempPrice);
 
                 }
             }
@@ -291,7 +309,12 @@ public class MgmtProduct extends JPanel {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + tableModel.getValueAt(table.getSelectedRow(), 0) + "?", "DELETE PRODUCT", JOptionPane.YES_NO_OPTION);
             
             if (result == JOptionPane.YES_OPTION) {
+
+                String tempString = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
+                System.out.println(tempString);
                 System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
+                this.sqlite.deleteProduct(tempString);
+
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
