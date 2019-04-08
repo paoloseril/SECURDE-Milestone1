@@ -239,6 +239,7 @@ public class MgmtProduct extends JPanel {
 
                         Logs log = new Logs(Constant.PURCHASE_SUCCESSFUL, user, "Password for user " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been successfully changed");
                         sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+
                         init();
                     }
                 }
@@ -353,8 +354,6 @@ public class MgmtProduct extends JPanel {
             if (result == JOptionPane.YES_OPTION) {
 
                 String tempString = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
-                System.out.println(tempString);
-                System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
                 this.sqlite.deleteProduct(tempString);
                 String tempLog = "Product " + tempString + " has been removed from the inventory";
                 String timestamp2 = new Timestamp(new Date().getTime()).toString();

@@ -43,7 +43,7 @@ public class Main {
             sqlite = new SQLite();
 
 //        // Create a database
-            sqlite.createNewDatabase();
+           // sqlite.createNewDatabase();
 //
 //        // Drop users table if needed
             //sqlite.dropHistoryTable();

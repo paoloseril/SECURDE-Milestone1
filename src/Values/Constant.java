@@ -31,14 +31,13 @@ public class Constant {
     public static String USER_UNLOCKED = "UUL";
 
     public static String EDIT_ROLE_SUCCESSFUL = "ER-S";
+    public static String EDIT_ROLE_FAILED = "ER-F";
 
     public static String CHANGED_PASSWORD_SUCCESSFUL = "CP-S";
     public static String CHANGED_PASSWORD_FAILURE = "CP-F";
 
     public static String DELETE_USER_SUCCESSFUL = "DU-S";
-
-    public static String REGISTER_SUCCESSFUL = "RE-S";
-    public static String REGISTER_FAILED = "RE-S";
+    public static String DELETE_USER_FAILED = "DU-F";
 
     public static String LOGIN_SUCCESSFUL = "LO-S";
     public static String LOGIN_FAILED = "LO-F";
