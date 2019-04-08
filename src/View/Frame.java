@@ -7,6 +7,8 @@ import Values.Constant;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.sql.Timestamp;
+import java.util.Date;
 import javax.swing.WindowConstants;
 
 public class Frame extends javax.swing.JFrame {
@@ -304,6 +306,9 @@ public class Frame extends javax.swing.JFrame {
     
     public void registerAction(String username, String password, String confpass){
         main.sqlite.addUser(username, password);
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        String timestamp2 = timestamp.toString();
+        main.sqlite.addLogs("NOTICE", username, "User creation successful", timestamp2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
