@@ -6,15 +6,8 @@
 package View;
 //[255,102,51]
 import Controller.SQLite;
-import Model.History;
-import Model.Logs;
-import Model.Product;
-import Model.User;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,6 +36,8 @@ public class ClientHome extends javax.swing.JPanel {
         mgmtProduct.setAddBtn(false);
         mgmtProduct.setEditBtn(false);
         mgmtProduct.setDeleteBtn(false);
+
+        mgmtProduct.setUser(name);
 
         mgmtHistory.setSearchBtnText("SEARCH PRODUCT");
         mgmtHistory.setCurrentUser(name);

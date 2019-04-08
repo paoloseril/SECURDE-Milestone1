@@ -300,7 +300,7 @@ public class SQLite {
         } catch (Exception ex) {}
     }
 
-    public void purchaseProduct(String name, int stockval){
+    public void  purchaseProduct(String name, int stockval){
         String sql = "UPDATE product SET stock = " + stockval + " WHERE name = '" + name + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);

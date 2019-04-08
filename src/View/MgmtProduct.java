@@ -7,7 +7,9 @@ package View;
 
 import Controller.SQLite;
 import Controller.Main;
+import Model.Logs;
 import Model.Product;
+import Values.Constant;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -24,7 +26,14 @@ public class MgmtProduct extends JPanel {
     public Main main;
     public SQLite sqlite;
     public DefaultTableModel tableModel;
-    
+
+    // APPLICABLE ONLY TO CLIENTS
+    private String user;
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public MgmtProduct(SQLite sqlite) {
         initComponents();
         this.sqlite = sqlite;
@@ -209,6 +218,8 @@ public class MgmtProduct extends JPanel {
                 // data validation
                 if (!stockFld.getText().matches("[1-9]+")) {
                     JOptionPane.showMessageDialog(this, "Value entered is not a valid number!");
+                    Logs log = new Logs(Constant.PURCHASE_FAILED, user, "Value entered to purchase " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " is not a valid number");
+                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
                 else {
                     // check inventory
@@ -216,6 +227,8 @@ public class MgmtProduct extends JPanel {
                     if (!(sqlite.getProduct((String) tableModel.getValueAt(table.getSelectedRow(), 0)).getStock() >= purchaseNumber)) {
                         JOptionPane.showMessageDialog
                                 (this, String.format("Value entered is greater than the total stock of %s", (String) tableModel.getValueAt(table.getSelectedRow(), 0)));
+                        Logs log = new Logs(Constant.PURCHASE_FAILED, user, String.format("Value entered is greater than the total stock of %s", (String) tableModel.getValueAt(table.getSelectedRow(), 0)));
+                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                     }
                     else {
                         String tempName = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
@@ -224,6 +237,9 @@ public class MgmtProduct extends JPanel {
 
                         this.sqlite.purchaseProduct(tempName, tempNumb);
 
+                        Logs log = new Logs(Constant.PURCHASE_SUCCESSFUL, user, "Password for user " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been successfully changed");
+                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                        init();
                     }
                 }
             }
@@ -249,12 +265,21 @@ public class MgmtProduct extends JPanel {
             // data validation
             if (!nameFld.getText().matches("([A-Za-z0-9]+\\s)*[A-Za-z0-9]+")) {
                 JOptionPane.showMessageDialog(this, "Product name is not valid!");
+                String tempLog = "Product name " + nameFld.getText() + " is not valid";
+                String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                this.sqlite.addLogs(Constant.ADD_PRODUCT_FAILED, user, tempLog, timestamp2);
             }
             else if (!stockFld.getText().matches("[0-9]+")) {
                 JOptionPane.showMessageDialog(this, "Stock value not a valid number!");
+                String tempLog = "Stock value entered for " + nameFld.getText() + " is not a valid number";
+                String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                this.sqlite.addLogs(Constant.ADD_PRODUCT_FAILED, user, tempLog, timestamp2);
             }
             else if (!priceFld.getText().matches("[0-9]+(\\.[0-9]+)?")) {
                 JOptionPane.showMessageDialog(this, "Invalid price!");
+                String tempLog = "Price entered for " + nameFld.getText() + " is not valid";
+                String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                this.sqlite.addLogs(Constant.ADD_PRODUCT_FAILED, user, tempLog, timestamp2);
             }
             else {
 
@@ -266,8 +291,8 @@ public class MgmtProduct extends JPanel {
 
                 Timestamp timestamp = new Timestamp(new Date().getTime());
                 String timestamp2 = timestamp.toString();
-
-                this.sqlite.addLogs("NOTICE","Staff", tempLog, timestamp2);
+                this.sqlite.addLogs(Constant.ADD_PRODUCT_SUCCESSFUL, user, tempLog, timestamp2);
+                init();
             }
         }
     }//GEN-LAST:event_addBtnActionPerformed
@@ -292,18 +317,30 @@ public class MgmtProduct extends JPanel {
                 // data validation
                 if (!nameFld.getText().matches("([A-Za-z0-9]+\\s)*[A-Za-z0-9]+")) {
                     JOptionPane.showMessageDialog(this, "Product name is not valid!");
+                    String tempLog = "New product name " + nameFld.getText() + " is not valid";
+                    String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                    this.sqlite.addLogs(Constant.EDIT_PRODUCT_FAILED, user, tempLog, timestamp2);
                 }
                 else if (!stockFld.getText().matches("[0-9]+")) {
                     JOptionPane.showMessageDialog(this, "Stock value not a valid number!");
+                    String tempLog = "Stock name for " + nameFld.getText() + " is not a valid number";
+                    String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                    this.sqlite.addLogs(Constant.EDIT_PRODUCT_FAILED, user, tempLog, timestamp2);
                 }
                 else if (!priceFld.getText().matches("[0-9]+(\\.[0-9]+)?")) {
                     JOptionPane.showMessageDialog(this, "Invalid price!");
+                    String tempLog = "Price entered for " + nameFld.getText() + " is not valid";
+                    String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                    this.sqlite.addLogs(Constant.EDIT_PRODUCT_FAILED, user, tempLog, timestamp2);
                 }
                 else {
                     int tempInt = Integer.parseInt(stockFld.getText());
                     double tempPrice = Double.parseDouble(priceFld.getText());
                     this.sqlite.editProduct(nameFld.getText(), tempInt, tempPrice);
-
+                    String tempLog = "New product name " + nameFld.getText() + " is not valid";
+                    String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                    this.sqlite.addLogs(Constant.EDIT_PRODUCT_SUCCESSFUL, user, tempLog, timestamp2);
+                    init();
                 }
             }
         }
@@ -319,7 +356,10 @@ public class MgmtProduct extends JPanel {
                 System.out.println(tempString);
                 System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
                 this.sqlite.deleteProduct(tempString);
-
+                String tempLog = "Product " + tempString + " has been removed from the inventory";
+                String timestamp2 = new Timestamp(new Date().getTime()).toString();
+                this.sqlite.addLogs(Constant.REMOVE_PRODUCT_SUCCESSFUL, user, tempLog, timestamp2);
+                init();
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
