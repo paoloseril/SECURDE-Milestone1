@@ -313,11 +313,7 @@ public class SQLite {
 
         String encrypted_password = AES.encrypt(password);
         String sql = "INSERT INTO users(username,password) VALUES('" + username + "', '" + encrypted_password + "')";
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> logdeleteaddeditproduct
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(sql);
@@ -333,16 +329,9 @@ public class SQLite {
         }
     }
 
-<<<<<<< HEAD
     public boolean isAcceptable(String username, String password) {
         if (password.length() < 8 || password.length() > 15
         || username.length() < 6 || username.length() > 15) {
-=======
-
-    // should be between 10 to 15 characters in length
-    public boolean isAcceptable(String password) {
-        if (password.length() < 10 || password.length() > 15) {
->>>>>>> logdeleteaddeditproduct
             return false;
         }
         else return usernameValidity(username) && passwordValidity(password);
@@ -451,7 +440,6 @@ public class SQLite {
 
     public void removeUser(String username) {
         String sql = "DELETE FROM users WHERE username='" + username + "');";
-        String sql = "DELETE FROM users WHERE username='" + username + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()) {
