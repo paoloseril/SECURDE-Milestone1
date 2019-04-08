@@ -2864,3 +2864,1111 @@
  Password: VQPnojeV9S50XKAScuT3Qg==
  Role: 2
  Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 3 =====
+ Name: Scanner
+ Stock: 10
+ Price: 100.0
+===== Product 5 =====
+ Name: lol
+ Stock: 10
+ Price: 10.0
+===== Product 6 =====
+ Name: lol2 
+ Stock: 1001
+ Price: 10.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 3 =====
+ Name: Scanner
+ Stock: 10
+ Price: 100.0
+===== Product 5 =====
+ Name: lol
+ Stock: 10
+ Price: 10.0
+===== Product 6 =====
+ Name: lol2 
+ Stock: 1001
+ Price: 10.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 3 =====
+ Name: Scanner
+ Stock: 10
+ Price: 100.0
+===== Product 5 =====
+ Name: lol
+ Stock: 10
+ Price: 10.0
+===== Product 6 =====
+ Name: lol2 
+ Stock: 1001
+ Price: 10.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 3 =====
+ Name: Scanner 
+ Stock: 100
+ Price: 100.0
+===== Product 5 =====
+ Name: lol 
+ Stock: -1
+ Price: 10.0
+===== Product 6 =====
+ Name: lol2 
+ Stock: -1
+ Price: 10.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: -1
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 8 =====
+ Username: user401
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+---------START OF LOG---------
+===== History 1 =====
+ Username: admin
+ Name: Antivirus
+ Stock: 1
+ Stock: 1
+===== History 2 =====
+ Username: manager
+ Name: Firewall
+ Stock: 1
+ Stock: 1
+===== History 3 =====
+ Username: staff
+ Name: Scanner
+ Stock: 1
+ Stock: 1
+===== Logs 1 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.015
+===== Logs 2 =====
+ Username: NOTICE
+ Password: manager
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.204
+===== Logs 3 =====
+ Username: NOTICE
+ Password: admin
+ Role: User creation successful
+ Timestamp: 2019-04-06 10:14:06.207
+===== Logs 4 =====
+ Username: user401
+ Password: PPppp12!@#
+ Role: User creation successful
+ Timestamp: 2019-04-06 00:19:08.891
+===== Logs 7 =====
+ Username: NOTICE
+ Password: Staff
+ Role: Added a product (Scanner)
+ Timestamp: 2019-04-07 16:24:35.014
+===== Product 1 =====
+ Name: Antivirus
+ Stock: 5
+ Price: 500.0
+===== Product 2 =====
+ Name: Firewall
+ Stock: 3
+ Price: 1000.0
+===== Product 9 =====
+ Name: Scanner
+ Stock: 96
+ Price: 100.0
+===== User 1 =====
+ Username: admin
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 5
+ Locked: 0
+===== User 2 =====
+ Username: manager
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 4
+ Locked: 0
+===== User 3 =====
+ Username: staff
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 3
+ Locked: 0
+===== User 4 =====
+ Username: client1
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 5 =====
+ Username: client2
+ Password: rgNMba5p9AFuNVOlHMxDoA==
+ Role: 2
+ Locked: 0
+===== User 6 =====
+ Username: admin2
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0
+===== User 7 =====
+ Username: user500
+ Password: VQPnojeV9S50XKAScuT3Qg==
+ Role: 2
+ Locked: 0

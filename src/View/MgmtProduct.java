@@ -218,6 +218,11 @@ public class MgmtProduct extends JPanel {
                                 (this, String.format("Value entered is greater than the total stock of %s", (String) tableModel.getValueAt(table.getSelectedRow(), 0)));
                     }
                     else {
+                        String tempName = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
+
+                        int tempNumb = sqlite.getProduct((String) tableModel.getValueAt(table.getSelectedRow(), 0)).getStock() - purchaseNumber;
+
+                        this.sqlite.purchaseProduct(tempName, tempNumb);
 
                     }
                 }

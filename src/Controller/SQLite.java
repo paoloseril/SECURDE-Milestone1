@@ -292,7 +292,16 @@ public class SQLite {
     }
 
     public void editProduct(String name, int stock, double price){
-        String sql = "UPDATE product SET name = '" + name + " ', stock = ' " + stock + " ', price = '" + price + "' WHERE name = '" + name + "'";
+        String sql = "UPDATE product SET stock = ' " + stock + " ', price = '" + price + "' WHERE name = '" + name + "'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
+    public void purchaseProduct(String name, int stockval){
+        String sql = "UPDATE product SET stock = " + stockval + " WHERE name = '" + name + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement()){
@@ -319,6 +328,7 @@ public class SQLite {
             ex.printStackTrace();
         }
     }
+
 
     // should be between 10 to 15 characters in length
     public boolean isAcceptable(String password) {
@@ -404,8 +414,21 @@ public class SQLite {
         }
         return -99;
     }
+
+    public void changeRole(String username, int role){
+        String sql = "UPDATE users SET role = '" + role + "' WHERE username='" + username + "'";
+
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void removeUser(String username) {
-        String sql = "DELETE FROM users WHERE username='" + username + "');";
+        String sql = "DELETE FROM users WHERE username='" + username + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()) {
