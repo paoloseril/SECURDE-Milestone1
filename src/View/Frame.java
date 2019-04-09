@@ -87,6 +87,7 @@ public class Frame extends javax.swing.JFrame {
         logoutBtn.setText("LOGOUT");
         logoutBtn.setFocusable(false);
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
             }
@@ -199,6 +200,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         frameView.show(Container, "loginPnl");
+
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     public Main main;
@@ -215,10 +217,10 @@ public class Frame extends javax.swing.JFrame {
     private CardLayout frameView = new CardLayout();
     
     public void init(Main controller){
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("SECURDE - SECURITY Svcs");
         this.setLocationRelativeTo(null);
-        
+
         this.main = controller;
         loginPnl.frame = this;
         registerPnl.frame = this;
