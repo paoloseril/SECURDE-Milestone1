@@ -11,6 +11,7 @@ import Model.Logs;
 import Model.Product;
 import Values.Constant;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -244,9 +245,11 @@ public class MgmtProduct extends JPanel {
 
                         this.sqlite.purchaseProduct(tempName, tempNumb);
 
+
+
                         Logs log = new Logs(Constant.PURCHASE_SUCCESSFUL, user, "Password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been successfully changed");
                         sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
-
+                        this.sqlite.addHistory(log.getUsername(), tempName, tempNumb, log.getTimestamp().toString());
                         init();
                     }
                 }
