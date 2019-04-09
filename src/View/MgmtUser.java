@@ -60,11 +60,17 @@ public class MgmtUser extends JPanel {
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
             tableModel.removeRow(0);
         }
-        if (sqlite.getUsers().size() == 0) {
-            deleteBtn.setEnabled(false);
+        int clientNumber = 0;
+        for (User u: sqlite.getUsers()) {
+            if (u.getRole() == 2) {
+                clientNumber++;
+            }
+        }
+        if (clientNumber > 0) {
+            deleteBtn.setEnabled(true);
         }
         else {
-            deleteBtn.setEnabled(true);
+            deleteBtn.setEnabled(false);
         }
 //      LOAD CONTENTS
         ArrayList<User> users = sqlite.getUsers();
@@ -247,11 +253,14 @@ public class MgmtUser extends JPanel {
                 if (result == JOptionPane.YES_OPTION) {
                     System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
                     this.sqlite.removeUser((tableModel.getValueAt(table.getSelectedRow(), 0)).toString());
-                    if (sqlite.getUsers().size() == 0) {
-                        deleteBtn.setEnabled(false);
+                    int clientNumber = 0;
+                    for (User u: sqlite.getUsers()) {
+                        if (u.getRole() == 2) {
+                            clientNumber++;
+                        }
                     }
-                    else {
-                        deleteBtn.setEnabled(true);
+                    if (clientNumber == 0) {
+                        deleteBtn.setEnabled(false);
                     }
                     Logs log = new Logs(Constant.DELETE_USER_SUCCESSFUL, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been removed");
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
