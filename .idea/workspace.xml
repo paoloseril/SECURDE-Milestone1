@@ -48,11 +48,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/SQLite.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="301">
-              <caret line="265" column="12" lean-forward="true" selection-start-line="265" selection-start-column="12" selection-end-line="265" selection-end-column="48" />
+              <caret line="271" column="15" lean-forward="true" selection-start-line="271" selection-start-column="15" selection-end-line="271" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/Login.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="160" column="38" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -73,8 +82,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/MgmtProduct.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1938">
+            <state relative-caret-position="427">
               <caret line="245" column="29" selection-start-line="245" selection-start-column="29" selection-end-line="245" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/MgmtLogs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/View/MgmtUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="235" column="40" lean-forward="true" selection-start-line="235" selection-start-column="40" selection-end-line="235" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -82,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/MgmtHistory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2108">
+            <state relative-caret-position="427">
               <caret line="257" column="95" selection-start-line="257" selection-start-column="91" selection-end-line="257" selection-end-column="95" />
               <folding>
                 <element signature="e#8254#10300#1" />
@@ -128,6 +155,7 @@
       <find>delete</find>
       <find>addH</find>
       <find>sea</find>
+      <find>sqlite</find>
     </findStrings>
     <replaceStrings>
       <replace>setVisible</replace>
@@ -160,15 +188,15 @@
         <option value="$PROJECT_DIR$/src/View/DisabledHome.java" />
         <option value="$PROJECT_DIR$/src/Controller/Main.java" />
         <option value="$PROJECT_DIR$/src/Values/Constant.java" />
-        <option value="$PROJECT_DIR$/src/View/Login.java" />
         <option value="$PROJECT_DIR$/src/View/MgmtLogs.java" />
         <option value="$PROJECT_DIR$/src/View/AdminHome.java" />
         <option value="$PROJECT_DIR$/src/View/StaffHome.java" />
         <option value="$PROJECT_DIR$/src/View/ManagerHome.java" />
         <option value="$PROJECT_DIR$/src/View/Frame.java" />
-        <option value="$PROJECT_DIR$/src/View/MgmtUser.java" />
         <option value="$PROJECT_DIR$/src/View/MgmtProduct.java" />
         <option value="$PROJECT_DIR$/src/Controller/SQLite.java" />
+        <option value="$PROJECT_DIR$/src/View/Login.java" />
+        <option value="$PROJECT_DIR$/src/View/MgmtUser.java" />
       </list>
     </option>
   </component>
@@ -452,7 +480,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49150142" visible="true" weight="0.40201342" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49150142" visible="true" weight="0.40201342" />
       <window_info id="Structure" order="1" sideWeight="0.5084986" side_tool="true" weight="0.39060402" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -461,7 +489,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49919224" weight="0.3296875" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8263328" visible="true" weight="0.27903682" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8263328" visible="true" weight="0.27903682" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -641,20 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MgmtLogs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-          <folding>
-            <element signature="e#1647#1736#0" expanded="true" />
-            <element signature="e#6330#6331#0" expanded="true" />
-            <element signature="e#6379#6380#0" expanded="true" />
-            <element signature="e#6420#6421#0" expanded="true" />
-            <element signature="e#6460#6461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ClientHome.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -673,20 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="195" column="30" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MgmtUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -711,23 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MgmtProduct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="245" column="29" selection-start-line="245" selection-start-column="29" selection-end-line="245" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MgmtHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2108">
-          <caret line="257" column="95" selection-start-line="257" selection-start-column="91" selection-end-line="257" selection-end-column="95" />
-          <folding>
-            <element signature="e#8254#10300#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -742,7 +725,45 @@
     <entry file="file://$PROJECT_DIR$/src/Controller/SQLite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
-          <caret line="265" column="12" lean-forward="true" selection-start-line="265" selection-start-column="12" selection-end-line="265" selection-end-column="48" />
+          <caret line="271" column="15" lean-forward="true" selection-start-line="271" selection-start-column="15" selection-end-line="271" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MgmtHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="257" column="95" selection-start-line="257" selection-start-column="91" selection-end-line="257" selection-end-column="95" />
+          <folding>
+            <element signature="e#8254#10300#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MgmtProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="245" column="29" selection-start-line="245" selection-start-column="29" selection-end-line="245" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MgmtLogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="160" column="38" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MgmtUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="235" column="40" lean-forward="true" selection-start-line="235" selection-start-column="40" selection-end-line="235" selection-end-column="40" />
         </state>
       </provider>
     </entry>

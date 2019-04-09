@@ -195,12 +195,12 @@ public class MgmtUser extends JPanel {
             switch (role) {
                 case 5: {
                     JOptionPane.showMessageDialog(null, "Sorry, cannot change role of admin.");
-                    sqlite.addLogs(Constant.EDIT_ROLE_FAILED, "admin", "Unsuccessful attempt changing role of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
+                    this.sqlite.addLogs(Constant.EDIT_ROLE_FAILED, "admin", "Unsuccessful attempt changing role of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
                     break;
                 }
                 case 2: {
                     JOptionPane.showMessageDialog(null, "Sorry, cannot change role of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'");
-                    sqlite.addLogs(Constant.EDIT_ROLE_FAILED, "admin", "Unsuccessful attempt changing role of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
+                    this.sqlite.addLogs(Constant.EDIT_ROLE_FAILED, "admin", "Unsuccessful attempt changing role of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
                     break;
                 }
                 default: {
@@ -215,9 +215,9 @@ public class MgmtUser extends JPanel {
                     if (result != null) {
                         int tempInt = Integer.parseInt(Character.toString(result.charAt(0)));
 
-                        this.sqlite.changeRole((tableModel.getValueAt(table.getSelectedRow(), 0)).toString(), tempInt);
+                        sqlite.changeRole((tableModel.getValueAt(table.getSelectedRow(), 0)).toString(), tempInt);
                         Logs log = new Logs(Constant.EDIT_ROLE_SUCCESSFUL, "admin", "Role of user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been changed to " + result.substring(2));
-                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                        this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                         init();
                     }
                 }
@@ -245,12 +245,12 @@ public class MgmtUser extends JPanel {
                         deleteBtn.setEnabled(false);
                     }
                     Logs log = new Logs(Constant.DELETE_USER_SUCCESSFUL, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been removed");
-                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                    this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                     init();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Sorry, cannot remove user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'");
-                sqlite.addLogs(Constant.DELETE_USER_FAILED, "admin", "Unsuccessful deletion attempt of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
+                this.sqlite.addLogs(Constant.DELETE_USER_FAILED, "admin", "Unsuccessful deletion attempt of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -273,7 +273,7 @@ public class MgmtUser extends JPanel {
                 else {
                     Logs log = new Logs(Constant.USER_LOCKED, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0) + "' has been locked out"));
                     sqlite.setLockout(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), 1);
-                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                    this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
                 init();
             }
@@ -297,24 +297,24 @@ public class MgmtUser extends JPanel {
                 if (password.getText().isEmpty() || confpass.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "One or more fields is empty!");
                     Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' cannot be set because one or more fields are empty!");
-                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                    this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
 
                 }
                 else if (!password.getText().equals(confpass.getText())) {
                     JOptionPane.showMessageDialog(null, "Password and confirm password do not match!");
                     Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' the password and confirm password fields do not match!");
-                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                    this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
                 else {
                     if (!sqlite.passwordValidity(password.getText())) {
                         JOptionPane.showMessageDialog(null, "New password does not follow the rules!");
                         Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' does not follow the rules");
-                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                        this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                     }
                     else {
                         sqlite.setPassword(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), password.getText());
                         Logs log = new Logs(Constant.CHANGED_PASSWORD_SUCCESSFUL, "admin", "Password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been successfully changed");
-                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                        this.sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                         JOptionPane.showMessageDialog(null, "Password for user " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been successfully changed!");
                         init();
                     }
