@@ -25,10 +25,10 @@ public class MgmtLogs extends javax.swing.JPanel {
     public SQLite sqlite;
     public DefaultTableModel tableModel;
     public SearchLog searchLog;
-    
+
     public MgmtLogs(SQLite sqlite) {
         initComponents();
-        searchLog = new SearchLog(sqlite);
+        searchLog = new SearchLog();
         searchLog.getSearchBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,26 +137,21 @@ public class MgmtLogs extends javax.swing.JPanel {
             tableModel.removeRow(0);
         }
 
-        if (sqlite.DEBUG_MODE == 1) {
-            if (sqlite.getLogs().size() == 0) {
-                clearBtn.setEnabled(false);
-            } else {
-                clearBtn.setEnabled(true);
-            }
-            debugBtn.setText("DISABLE DEBUG MODE");
+        if (sqlite.getLogs().size() == 0) {
+            debugBtn.setEnabled(false);
+        } else {
+            debugBtn.setEnabled(true);
         }
-        else {
-            clearBtn.setEnabled(false);
-            debugBtn.setText("ENABLE DEBUG MODE");
-        }
+        clearBtn.setEnabled(false);
+        debugBtn.setText("ENABLE DEBUG MODE");
 //      LOAD CONTENTS
         ArrayList<Logs> logs = sqlite.getLogs();
         for(int nCtr = 0; nCtr < logs.size(); nCtr++){
             tableModel.addRow(new Object[]{
-                logs.get(nCtr).getEvent(), 
-                logs.get(nCtr).getUsername(), 
-                logs.get(nCtr).getDesc(), 
-                logs.get(nCtr).getTimestamp()});
+                    logs.get(nCtr).getEvent(),
+                    logs.get(nCtr).getUsername(),
+                    logs.get(nCtr).getDesc(),
+                    logs.get(nCtr).getTimestamp()});
         }
     }
     /**
@@ -175,18 +170,18 @@ public class MgmtLogs extends javax.swing.JPanel {
 
         table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         table.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Event", "Username", "Description", "Timestamp"
-            }
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Event", "Username", "Description", "Timestamp"
+                }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                    false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -225,25 +220,25 @@ public class MgmtLogs extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(debugBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0)
-                        .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(debugBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(debugBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(debugBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -251,12 +246,15 @@ public class MgmtLogs extends javax.swing.JPanel {
         String tempString = tableModel.getValueAt(table.getSelectedRow(), 3).toString();
         this.sqlite.deleteLogs(tempString);
         if (sqlite.getLogs().size() == 0) {
+            debugBtn.setEnabled(false);
             clearBtn.setEnabled(false);
+            searchLog.setVisible(false);
+            debugBtn.setText("ENABLE DEBUG MODE");
+            sqlite.DEBUG_MODE = 0;
+            init();
+        } else {
+            debugBtn.setEnabled(true);
         }
-        else {
-            clearBtn.setEnabled(true);
-        }
-        init();
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void debugBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugBtnActionPerformed
@@ -266,18 +264,14 @@ public class MgmtLogs extends javax.swing.JPanel {
             searchLog.setVisible(false);
             debugBtn.setText("ENABLE DEBUG MODE");
             sqlite.DEBUG_MODE = 0;
+            init();
         }
         else {
-            if (sqlite.getLogs().size() == 0) {
-                clearBtn.setEnabled(false);
-            } else {
-                clearBtn.setEnabled(true);
-            }
+            clearBtn.setEnabled(true);
             debugBtn.setText("DISABLE DEBUG MODE");
             searchLog.setVisible(true);
             sqlite.DEBUG_MODE = 1;
         }
-        init();
     }//GEN-LAST:event_debugBtnActionPerformed
 
     public void setDebugBtn(boolean visible) {

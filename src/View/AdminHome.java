@@ -27,6 +27,7 @@ public class AdminHome extends javax.swing.JPanel {
     private CardLayout contentView = new CardLayout();
     
     public AdminHome() {
+
         initComponents();
     }
     

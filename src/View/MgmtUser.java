@@ -38,23 +38,6 @@ public class MgmtUser extends JPanel {
 //        lockBtn.setVisible(false);
 //        chgpassBtn.setVisible(false);
     }
-
-    public void setDeleteBtn(boolean visible) {
-        deleteBtn.setVisible(visible);
-    }
-
-    public void setEditRoleBtn(boolean visible) {
-        editRoleBtn.setVisible(visible);
-    }
-
-    public void setLockBtn(boolean visible) {
-        lockBtn.setVisible(visible);
-    }
-
-    public void setChgpassBtn(boolean visible) {
-        chgpassBtn.setVisible(visible);
-    }
-
     public void init(){
         //      CLEAR TABLE
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
@@ -221,7 +204,6 @@ public class MgmtUser extends JPanel {
                     break;
                 }
                 default: {
-                    System.out.println("R: " + role);
                     String[] options = {"1-DISABLED","3-STAFF","4-MANAGER"};
                     JComboBox optionList = new JComboBox(options);
 
