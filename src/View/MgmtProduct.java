@@ -27,7 +27,6 @@ public class MgmtProduct extends JPanel {
     public SQLite sqlite;
     public DefaultTableModel tableModel;
 
-    // APPLICABLE ONLY TO CLIENTS
     private String user;
 
     public void setUser(String user) {

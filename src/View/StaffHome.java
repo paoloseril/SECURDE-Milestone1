@@ -10,6 +10,8 @@ import Model.History;
 import Model.Logs;
 import Model.Product;
 import Model.User;
+import Values.Constant;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -46,15 +48,26 @@ public class StaffHome extends javax.swing.JPanel {
         Content.add(mgmtLogs, "mgmtLogs");
 
         mgmtHistory.setSearchBtnText("SEARCH USERNAME");
+        mgmtProduct.setPurchaseBtn(false);
         mgmtLogs.setClearBtn(false);
         mgmtLogs.setDebugBtn(false);
+        if (!Constant.managerLockedOut) {
+            mgmtProduct.setEditBtn(false);
+            mgmtProduct.setAddBtn(false);
+            mgmtProduct.setDeleteBtn(false);
+        }
+        else {
+            mgmtProduct.setEditBtn(true);
+            mgmtProduct.setAddBtn(true);
+            mgmtProduct.setDeleteBtn(true);
+        }
 //        UNCOMMENT TO DISABLE BUTTONS
 //        historyBtn.setVisible(false);
 //        usersBtn.setVisible(false);
 //        productsBtn.setVisible(false);
 //        logsBtn.setVisible(false);
     }
-    
+
     public void showPnl(String panelName){
         contentView.show(Content, panelName);
     }
@@ -156,6 +169,8 @@ public class StaffHome extends javax.swing.JPanel {
                 .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        usersBtn.setVisible(false);
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersBtnActionPerformed

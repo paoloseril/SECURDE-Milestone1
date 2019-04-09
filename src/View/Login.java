@@ -174,13 +174,15 @@ public class Login extends javax.swing.JPanel {
             int role = frame.main.sqlite.authenticate(username, password);
             if (role != -99) {
                 if (frame.main.sqlite.isLocked(username)) {
+                    if (frame.main.sqlite.getUser(username).getRole() == 4) {
+                        Constant.managerLockedOut = true;
+                    }
                     frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User '" + username + "' attempted to login but was locked out", new Timestamp(new Date().getTime()).toString());
                     e_Mode();
                 }
                 else {
                     setNormal();
                     resetAttemptCounts();
-                    System.out.println("P");
                     frame.main.sqlite.addLogs(Constant.LOGIN_SUCCESSFUL, username, "User '" + username + "' has successfully logged in", new Timestamp(new Date().getTime()).toString());
                     frame.mainNav(username, role);
                 }
@@ -196,6 +198,9 @@ public class Login extends javax.swing.JPanel {
                         increaseCount(username);
                         frame.main.sqlite.addLogs(Constant.LOGIN_FAILED, username, "User '" + username + "' has been unsuccessful to login due to invalid credentials", new Timestamp(new Date().getTime()).toString());
                         if (getCount(username) == 5) {
+                            if (frame.main.sqlite.getUser(username).getRole() == 4) {
+                                Constant.managerLockedOut = true;
+                            }
                             // set lock out for user
                             frame.main.sqlite.setLockout(username, 1);
                             e_Mode();

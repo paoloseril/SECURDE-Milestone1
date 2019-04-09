@@ -57,4 +57,5 @@ public class Constant {
     public static String DEBUG_MODE_ON = "DEBUG-M1";
     public static String DEBUG_MODE_OFF = "DEBUG-M0";
 
+    public static boolean managerLockedOut = false;
 }

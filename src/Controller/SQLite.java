@@ -373,6 +373,25 @@ public class SQLite {
         return ucCount >= 2 && lcCount >= 3 && numCount >= 2 && symCount >= 1;
     }
 
+    public User getUser(String username) {
+        String sql = "SELECT id, username, password, role, locked FROM users where lower(username) = " + username.toLowerCase();
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+
+            if (rs.next()) {
+                return new User(rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getInt("role"),
+                        rs.getInt("locked"));
+            }
+        } catch (Exception ex) {
+
+        }
+        return null;
+    }
     public void addUser(String username, String password, int role) {
 
         String encrypted_password = AES.encrypt(password);
