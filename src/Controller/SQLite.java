@@ -6,6 +6,10 @@ import Model.Product;
 import Model.User;
 import Values.AES;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -254,6 +258,22 @@ public class SQLite {
 
     public void addLogs(String event, String username, String desc, String timestamp) {
         String sql = "INSERT INTO logs(event,username,desc,timestamp) VALUES('" + event + "','" + username + "','" + desc + "','" + timestamp + "')";
+
+        String fileName = "logs.txt";
+        try {
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(fileName));
+            out.write("----------------------");
+            out.write(event + "\n");
+            out.write(username + "\n");
+            out.write(desc + "\n");
+            out.write(timestamp + "\n");
+            out.write("----------------------");
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("Exception Occurred" + e);
+        }
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement()){
