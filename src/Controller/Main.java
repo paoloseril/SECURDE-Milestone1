@@ -32,13 +32,6 @@ public class Main {
         }
        */
 
-        try(FileWriter fw = new FileWriter("logs.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println("---------START OF LOG---------");
-            //more code
-
             // Initialize a driver object
             sqlite = new SQLite();
 
@@ -90,14 +83,6 @@ public class Main {
             // Initialize User Interface
             Frame frame = new Frame();
             frame.init(this);
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
-        }
-
-
-
-
-
     }
     
 }

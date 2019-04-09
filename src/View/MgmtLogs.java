@@ -7,7 +7,12 @@ package View;
 
 import Controller.SQLite;
 import Model.Logs;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,16 +24,111 @@ public class MgmtLogs extends javax.swing.JPanel {
 
     public SQLite sqlite;
     public DefaultTableModel tableModel;
+    public SearchLog searchLog;
     
     public MgmtLogs(SQLite sqlite) {
         initComponents();
+        searchLog = new SearchLog(sqlite);
+        searchLog.getSearchBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Get the description name if any
+                ArrayList<Logs> possibleLogs = sqlite.getLogs();
+                // contains ignore case desc
+                String desc = searchLog.getDesc().getText().toLowerCase();
+                String date = searchLog.getDate().getText();
+
+                List<String> checkListFunction = searchLog.getCheckBoxesFunctionalities();
+                List<String> checkListTests = searchLog.getCheckBoxesTests();
+                List<String> checkListUser = searchLog.getCheckBoxesUser();
+
+                if (!desc.isEmpty()) {
+                    // remove log from list
+                    possibleLogs.removeIf(log -> !log.getDesc().toLowerCase().contains(desc));
+                }
+
+                if (!date.isEmpty()) {
+                    // remove log from list
+                    possibleLogs.removeIf(log -> !log.getTimestamp().toString().contains(date));
+                }
+
+                if (checkListFunction.size() >= 1 || checkListTests.size() >= 1 || checkListUser.size() >= 1) {
+                    String pattern = "";
+                    if (checkListFunction.size() >= 1 && checkListTests.size() >= 1) {
+                        for (int i = 0; i < checkListTests.size(); i++) {
+                            for (int j = 0; j < checkListFunction.size(); j++) {
+                                // if the last element in both two lists
+                                if (i + 1 == checkListTests.size() && j + 1 == checkListFunction.size()) {
+                                    pattern = pattern.concat(checkListFunction.get(j) + "-" + checkListTests.get(i));
+                                }
+                                else {
+                                    pattern = pattern.concat(checkListFunction.get(j) + "-" + checkListTests.get(i)).concat("|");
+                                }
+                            }
+                        }
+                    }
+                    // CF-[FS]
+                    else if (checkListFunction.size() >= 1) {
+                        for (int i = 0; i < checkListFunction.size(); i++) {
+                            if (i + 1 == checkListFunction.size()) {
+                                pattern = pattern.concat(checkListFunction.get(i) + "-[FS]");
+                            }
+                            else {
+                                pattern = pattern.concat(checkListFunction.get(i) + "-[FS]|");
+                            }
+                        }
+                    }
+                    // [any]-F |[any]-S
+                    else if (checkListTests.size() >= 1) {
+                        for (int i = 0; i < checkListTests.size(); i++) {
+                            if (i + 1 == checkListTests.size()) {
+                                pattern = pattern.concat("\\w+" + "-" + checkListTests.get(i));
+                            }
+                            else {
+                                pattern = pattern.concat("\\w+" + "-" + checkListTests.get(i) + "|");
+                            }
+                        }
+                    }
+
+                    if (checkListUser.size() >= 1) {
+                        for (int i = 0; i < checkListUser.size(); i++) {
+                            if (i == 0 && pattern.equals("")) {
+                                pattern = pattern.concat(checkListUser.get(i));
+                            }
+                            else {
+                                pattern = pattern.concat("|").concat(checkListUser.get(i));
+                            }
+                        }
+                    }
+
+                    System.out.println("Pattern: " + pattern);
+                    Iterator<Logs> iterator = possibleLogs.iterator();
+                    while (iterator.hasNext()) {
+                        Logs log = iterator.next();
+                        if (!log.getEvent().matches(pattern)) {
+                            // remove log from list
+                            iterator.remove();
+                        }
+                    }
+                }
+
+                for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
+                    tableModel.removeRow(0);
+                }
+
+                for (Logs possibleLog : possibleLogs) {
+                    tableModel.addRow(new Object[]{
+                            possibleLog.getEvent(),
+                            possibleLog.getUsername(),
+                            possibleLog.getDesc(),
+                            possibleLog.getTimestamp()});
+                }
+            }
+        });
         this.sqlite = sqlite;
         tableModel = (DefaultTableModel)table.getModel();
         table.getTableHeader().setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 14));
-        
-//        UNCOMMENT TO DISABLE BUTTONS
-//        clearBtn.setVisible(false);
-//        debugBtn.setVisible(false);
+
     }
 
     public void init(){
@@ -37,11 +137,17 @@ public class MgmtLogs extends javax.swing.JPanel {
             tableModel.removeRow(0);
         }
 
-        if (sqlite.getLogs().size() == 0) {
-            clearBtn.setEnabled(false);
+        if (sqlite.DEBUG_MODE == 1) {
+            if (sqlite.getLogs().size() == 0) {
+                clearBtn.setEnabled(false);
+            } else {
+                clearBtn.setEnabled(true);
+            }
+            debugBtn.setText("DISABLE DEBUG MODE");
         }
         else {
-            clearBtn.setEnabled(true);
+            clearBtn.setEnabled(false);
+            debugBtn.setText("ENABLE DEBUG MODE");
         }
 //      LOAD CONTENTS
         ArrayList<Logs> logs = sqlite.getLogs();
@@ -154,10 +260,24 @@ public class MgmtLogs extends javax.swing.JPanel {
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void debugBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugBtnActionPerformed
-        if(sqlite.DEBUG_MODE == 1)
+        if(sqlite.DEBUG_MODE == 1) {
+            clearBtn.setEnabled(false);
+            // close the application
+            searchLog.setVisible(false);
+            debugBtn.setText("ENABLE DEBUG MODE");
             sqlite.DEBUG_MODE = 0;
-        else
+        }
+        else {
+            if (sqlite.getLogs().size() == 0) {
+                clearBtn.setEnabled(false);
+            } else {
+                clearBtn.setEnabled(true);
+            }
+            debugBtn.setText("DISABLE DEBUG MODE");
+            searchLog.setVisible(true);
             sqlite.DEBUG_MODE = 1;
+        }
+        init();
     }//GEN-LAST:event_debugBtnActionPerformed
 
     public void setDebugBtn(boolean visible) {

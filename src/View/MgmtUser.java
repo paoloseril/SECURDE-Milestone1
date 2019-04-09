@@ -285,11 +285,11 @@ public class MgmtUser extends JPanel {
             if (result == JOptionPane.YES_OPTION) {
                 if (state.equals("unlock")) {
                     sqlite.setLockout(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), 0);
-                    Logs log = new Logs(Constant.USER_UNLOCKED, "admin", "User " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0) + " has been unlocked"));
+                    Logs log = new Logs(Constant.USER_UNLOCKED, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0) + "' has been unlocked"));
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
                 else {
-                    Logs log = new Logs(Constant.USER_LOCKED, "admin", "User " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0) + " has been locked out"));
+                    Logs log = new Logs(Constant.USER_LOCKED, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0) + "' has been locked out"));
                     sqlite.setLockout(String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)), 1);
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
@@ -314,13 +314,13 @@ public class MgmtUser extends JPanel {
             if (result == JOptionPane.OK_OPTION) {
                 if (password.getText().isEmpty() || confpass.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "One or more fields is empty!");
-                    Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "");
+                    Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' cannot be set because one or more fields are empty!");
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
 
                 }
                 else if (!password.getText().equals(confpass.getText())) {
                     JOptionPane.showMessageDialog(null, "Password and confirm password do not match!");
-                    Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "");
+                    Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' the password and confirm password fields do not match!");
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                 }
                 else {

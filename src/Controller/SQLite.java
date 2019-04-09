@@ -454,23 +454,24 @@ public class SQLite {
     public int authenticate(String username, String password) {
 
         // refuse password if it contains single or double quotes (SQL injection prevention)
-        if (!(password.contains("'") || password.contains("\""))) {
-            String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
+        if (username.contains("'") || username.contains("\"") || password.contains("'") || password.contains("\"")) {
+            return -99;
+        }
+        String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
 
-            try (Connection conn = DriverManager.getConnection(driverURL);
-                 Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-                if (rs.next()) {
-                    String the_p = AES.decrypt(rs.getString("password"));
-                    if (the_p.equals(password)) {
-                        return rs.getInt("role");
-                    }
-                    return -99;
+            if (rs.next()) {
+                String the_p = AES.decrypt(rs.getString("password"));
+                if (the_p.equals(password)) {
+                    return rs.getInt("role");
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                return -99;
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return -99;
     }
