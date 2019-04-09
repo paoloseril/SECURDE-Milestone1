@@ -56,11 +56,6 @@ public class Frame extends javax.swing.JFrame {
         adminBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         adminBtn.setText("Admin Home");
         adminBtn.setFocusable(false);
-        adminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminBtnActionPerformed();
-            }
-        });
 
         disabledBtn.setBackground(new java.awt.Color(250, 250, 250));
         disabledBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -76,21 +71,11 @@ public class Frame extends javax.swing.JFrame {
         managerBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         managerBtn.setText("Manager Home");
         managerBtn.setFocusable(false);
-        managerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtnActionPerformed();
-            }
-        });
 
         staffBtn.setBackground(new java.awt.Color(250, 250, 250));
         staffBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         staffBtn.setText("Staff Home");
         staffBtn.setFocusable(false);
-        staffBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                staffBtnActionPerformed();
-            }
-        });
 
         clientBtn.setBackground(new java.awt.Color(250, 250, 250));
         clientBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -187,17 +172,21 @@ public class Frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminBtnActionPerformed() {//GEN-FIRST:event_adminBtnActionPerformed
+    private void adminBtnActionPerformed(String name) {
+        adminHomePnl.init(main.sqlite, name);
+//GEN-FIRST:event_adminBtnActionPerformed
         adminHomePnl.showPnl("home");
         contentView.show(Content, "adminHomePnl");
     }//GEN-LAST:event_adminBtnActionPerformed
 
-    private void managerBtnActionPerformed() {//GEN-FIRST:event_managerBtnActionPerformed
+    private void managerBtnActionPerformed(String name) {//GEN-FIRST:event_managerBtnActionPerformed
+        managerHomePnl.init(main.sqlite, name);
         managerHomePnl.showPnl("home");
         contentView.show(Content, "managerHomePnl");
     }//GEN-LAST:event_managerBtnActionPerformed
 
-    private void staffBtnActionPerformed() {//GEN-FIRST:event_staffBtnActionPerformed
+    private void staffBtnActionPerformed(String username) {//GEN-FIRST:event_staffBtnActionPerformed
+        staffHomePnl.init(main.sqlite, username);
         staffHomePnl.showPnl("home");
         contentView.show(Content, "staffHomePnl");
     }//GEN-LAST:event_staffBtnActionPerformed
@@ -234,11 +223,11 @@ public class Frame extends javax.swing.JFrame {
         loginPnl.frame = this;
         registerPnl.frame = this;
         
-        adminHomePnl.init(main.sqlite);
+        adminHomePnl.init(main.sqlite, "");
         clientHomePnl.init(main.sqlite, "");
-        managerHomePnl.init(main.sqlite);
+        managerHomePnl.init(main.sqlite, "");
         disabledHomePnl.init();
-        staffHomePnl.init(main.sqlite);
+        staffHomePnl.init(main.sqlite, "");
         
         Container.setLayout(frameView);
         Container.add(loginPnl, "loginPnl");
@@ -266,7 +255,7 @@ public class Frame extends javax.swing.JFrame {
     public void mainNav(String username, int role){
         switch (role) {
             case 5: {
-                adminBtnActionPerformed();
+                adminBtnActionPerformed(username);
                 adminBtn.setVisible(true);
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
@@ -275,7 +264,7 @@ public class Frame extends javax.swing.JFrame {
                 break;
             }
             case 4: {
-                managerBtnActionPerformed();
+                managerBtnActionPerformed(username);
                 adminBtn.setVisible(false);
                 managerBtn.setVisible(true);
                 staffBtn.setVisible(false);
@@ -284,7 +273,7 @@ public class Frame extends javax.swing.JFrame {
                 break;
             }
             case 3: {
-                staffBtnActionPerformed();
+                staffBtnActionPerformed(username);
                 adminBtn.setVisible(false);
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(true);
