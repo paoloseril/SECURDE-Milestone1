@@ -261,6 +261,36 @@ public class SQLite {
         } catch (Exception ex) {}
     }
 
+    public void searchLogsUser(String username)
+    {
+        String sql = "SELECT id, event, username, desc, timestamp FROM logs where username = '" + username +"'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
+    public void searchLogsEvent(String event)
+    {
+        String sql = "SELECT id, event, username, desc, timestamp FROM logs where event = '" + event +"'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
+    public void searchLogsTimeStamp(String time)
+    {
+        String sql = "SELECT id, event, username, desc, timestamp FROM logs where event LIKE '" + time +"'";
+
+        try (Connection conn = DriverManager.getConnection(driverURL);
+             Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+        } catch (Exception ex) {}
+    }
+
     public void deleteLogs(String timestamp) {
         String sql = "DELETE FROM logs WHERE timestamp = '" + timestamp + "'";
 
