@@ -263,12 +263,12 @@ public class SQLite {
         try {
             BufferedWriter out = new BufferedWriter(
                     new FileWriter(fileName));
-            out.write("----------------------");
+            out.write("----------------------\n");
             out.write(event + "\n");
             out.write(username + "\n");
             out.write(desc + "\n");
             out.write(timestamp + "\n");
-            out.write("----------------------");
+            out.write("----------------------\n");
             out.close();
         }
         catch (IOException e) {
