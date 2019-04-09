@@ -9,7 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.sql.Timestamp;
 import java.util.Date;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 public class Frame extends javax.swing.JFrame {
 
@@ -31,6 +31,7 @@ public class Frame extends javax.swing.JFrame {
         staffBtn = new javax.swing.JButton();
         clientBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
+        disabledBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -60,6 +61,11 @@ public class Frame extends javax.swing.JFrame {
                 adminBtnActionPerformed();
             }
         });
+
+        disabledBtn.setBackground(new java.awt.Color(250, 250, 250));
+        disabledBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        disabledBtn.setText("Disabled");
+        disabledBtn.setFocusable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,6 +119,7 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(managerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(staffBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(disabledBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -130,6 +137,8 @@ public class Frame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                    .addComponent(disabledBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -211,6 +220,7 @@ public class Frame extends javax.swing.JFrame {
     private ManagerHome managerHomePnl = new ManagerHome();
     private StaffHome staffHomePnl = new StaffHome();
     private ClientHome clientHomePnl = new ClientHome();
+    private DisabledHome disabledHomePnl = new DisabledHome();
     
     private CardLayout contentView = new CardLayout();
     private CardLayout frameView = new CardLayout();
@@ -227,6 +237,7 @@ public class Frame extends javax.swing.JFrame {
         adminHomePnl.init(main.sqlite);
         clientHomePnl.init(main.sqlite, "");
         managerHomePnl.init(main.sqlite);
+        disabledHomePnl.init();
         staffHomePnl.init(main.sqlite);
         
         Container.setLayout(frameView);
@@ -240,12 +251,15 @@ public class Frame extends javax.swing.JFrame {
         Content.add(managerHomePnl, "managerHomePnl");
         Content.add(staffHomePnl, "staffHomePnl");
         Content.add(clientHomePnl, "clientHomePnl");
+        Content.add(disabledHomePnl, "disabledHomePnl");
         
         this.setVisible(true);
         this.setResizable(false);
 
         for (User u: main.sqlite.getUsers()) {
-            Constant.attemptCounts.put(u.getUsername(), 0);
+            if (!u.getUsername().equalsIgnoreCase("admin")) {
+                Constant.attemptCounts.put(u.getUsername(), 0);
+            }
         }
     }
 
@@ -257,6 +271,7 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
                 clientBtn.setVisible(false);
+                disabledBtn.setVisible(false);
                 break;
             }
             case 4: {
@@ -265,6 +280,7 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(true);
                 staffBtn.setVisible(false);
                 clientBtn.setVisible(false);
+                disabledBtn.setVisible(false);
                 break;
             }
             case 3: {
@@ -273,6 +289,8 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(true);
                 clientBtn.setVisible(false);
+                disabledBtn.setVisible(false);
+
                 break;
             }
             case 2: {
@@ -281,6 +299,7 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
                 clientBtn.setVisible(true);
+                disabledBtn.setVisible(false);
                 break;
             }
             case 1: {
@@ -289,6 +308,7 @@ public class Frame extends javax.swing.JFrame {
                 managerBtn.setVisible(false);
                 staffBtn.setVisible(false);
                 clientBtn.setVisible(false);
+                disabledBtn.setVisible(true);
                 break;
             }
         }
@@ -318,6 +338,7 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JPanel Navigation;
     private javax.swing.JButton adminBtn;
     private javax.swing.JButton clientBtn;
+    private javax.swing.JButton disabledBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton managerBtn;

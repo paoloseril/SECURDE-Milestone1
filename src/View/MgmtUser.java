@@ -197,14 +197,6 @@ public class MgmtUser extends JPanel {
 
     private void editRoleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoleBtnActionPerformed
         if(table.getSelectedRow() >= 0){
-            String[] options = {"1-DISABLED","2-CLIENT","3-STAFF","4-MANAGER","5-ADMIN"};
-            JComboBox optionList = new JComboBox(options);
-            
-            optionList.setSelectedIndex((int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1);
-            
-            String result = (String) JOptionPane.showInputDialog(null, "USER: " + tableModel.getValueAt(table.getSelectedRow(), 0), 
-                "EDIT USER ROLE", JOptionPane.QUESTION_MESSAGE, null, options, options[(int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1]);
-
             int role = (int) tableModel.getValueAt(table.getSelectedRow(), 2);
             switch (role) {
                 case 5: {
@@ -218,11 +210,20 @@ public class MgmtUser extends JPanel {
                     break;
                 }
                 default: {
+                    System.out.println("R: " + role);
+                    String[] options = {"1-DISABLED","3-STAFF","4-MANAGER"};
+                    JComboBox optionList = new JComboBox(options);
+
+                    optionList.setSelectedIndex((int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1 == 0 ? (int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1: (int)tableModel.getValueAt(table.getSelectedRow(), 2) - 2);
+
+                    String result = (String) JOptionPane.showInputDialog(null, "USER: " + tableModel.getValueAt(table.getSelectedRow(), 0),
+                            "EDIT USER ROLE", JOptionPane.QUESTION_MESSAGE, null, options, options[(int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1 == 0 ? (int)tableModel.getValueAt(table.getSelectedRow(), 2) - 1: (int)tableModel.getValueAt(table.getSelectedRow(), 2) - 2]);
+
                     if (result != null) {
                         int tempInt = Integer.parseInt(Character.toString(result.charAt(0)));
 
                         this.sqlite.changeRole((tableModel.getValueAt(table.getSelectedRow(), 0)).toString(), tempInt);
-                        Logs log = new Logs(Constant.EDIT_ROLE_SUCCESSFUL, "admin", "Role of user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been changed to " + options[tempInt - 1].substring(2));
+                        Logs log = new Logs(Constant.EDIT_ROLE_SUCCESSFUL, "admin", "Role of user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been changed to " + result.substring(2));
                         sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                         init();
                     }
@@ -233,24 +234,20 @@ public class MgmtUser extends JPanel {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         if(table.getSelectedRow() >= 0){
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + tableModel.getValueAt(table.getSelectedRow(), 0) + "?", "DELETE USER", JOptionPane.YES_NO_OPTION);
 
             int role = (int) tableModel.getValueAt(table.getSelectedRow(), 2);
-            switch (role) {
-                case 2: {
-                    if (result == JOptionPane.YES_OPTION) {
-                        System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
-                        this.sqlite.removeUser((tableModel.getValueAt(table.getSelectedRow(), 0)).toString());
-                        Logs log = new Logs(Constant.DELETE_USER_SUCCESSFUL, "admin", "User " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been removed");
-                        sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
-                        init();
-                    }
-                    break;
+            if (role == 2) {
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + tableModel.getValueAt(table.getSelectedRow(), 0) + "?", "DELETE USER", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
+                    this.sqlite.removeUser((tableModel.getValueAt(table.getSelectedRow(), 0)).toString());
+                    Logs log = new Logs(Constant.DELETE_USER_SUCCESSFUL, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been removed");
+                    sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
+                    init();
                 }
-                default: {
-                    JOptionPane.showMessageDialog(null, "Sorry, cannot remove user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'");
-                    sqlite.addLogs(Constant.DELETE_USER_FAILED, "admin", "Unsuccessful deletion attempt of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Sorry, cannot remove user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'");
+                sqlite.addLogs(Constant.DELETE_USER_FAILED, "admin", "Unsuccessful deletion attempt of user '" + tableModel.getValueAt(table.getSelectedRow(), 0) + "'", new Timestamp(new Date().getTime()).toString());
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed

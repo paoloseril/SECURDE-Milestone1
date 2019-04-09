@@ -1,8 +1,12 @@
 package View;
 
+import Controller.SQLite;
+
 import java.awt.*;
 
 public class DisabledHome extends javax.swing.JPanel {
+
+    private CardLayout contentView = new CardLayout();
 
     /**
      * Creates new form ClientHome
@@ -11,6 +15,16 @@ public class DisabledHome extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void init(){
+        Content.setLayout(contentView);
+        Content.add(new Home("Disabled", Color.GRAY));
+
+//        UNCOMMENT TO DISABLE BUTTONS
+//        historyBtn.setVisible(false);
+//        usersBtn.setVisible(false);
+//        productsBtn.setVisible(false);
+//        logsBtn.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -20,9 +34,84 @@ public class DisabledHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        productsBtn = new javax.swing.JButton();
+        historyBtn = new javax.swing.JButton();
+        usersBtn = new javax.swing.JButton();
+        Content = new javax.swing.JPanel();
+        logsBtn = new javax.swing.JButton();
+
         setBackground(Color.GRAY);
+
+        productsBtn.setBackground(new Color(255, 255, 255));
+        productsBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        productsBtn.setText("PRODUCTS");
+
+        usersBtn.setBackground(new Color(255, 255, 255));
+        usersBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        usersBtn.setText("USERS");
+
+        Content.setBackground(Color.GRAY);
+
+        historyBtn.setBackground(new Color(255, 255, 255));
+        historyBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        historyBtn.setText("HISTORY");
+
+        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+        Content.setLayout(ContentLayout);
+        ContentLayout.setHorizontalGroup(
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ContentLayout.setVerticalGroup(
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 271, Short.MAX_VALUE)
+        );
+
+        logsBtn.setBackground(new Color(255, 255, 255));
+        logsBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        logsBtn.setText("LOGS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(usersBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(productsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(historyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(logsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(usersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(productsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(historyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(logsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+
+        logsBtn.setEnabled(false);
+        usersBtn.setEnabled(false);
+        historyBtn.setEnabled(false);
+        productsBtn.setEnabled(false);
     }// </editor-fold>//GEN-END:initComponents
+
+    private javax.swing.JPanel Content;
+    private javax.swing.JButton logsBtn;
+    private javax.swing.JButton usersBtn;
+    private javax.swing.JButton historyBtn;
+    private javax.swing.JButton productsBtn;
 }

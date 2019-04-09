@@ -237,7 +237,7 @@ public class MgmtProduct extends JPanel {
 
                         this.sqlite.purchaseProduct(tempName, tempNumb);
 
-                        Logs log = new Logs(Constant.PURCHASE_SUCCESSFUL, user, "Password for user " + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + " has been successfully changed");
+                        Logs log = new Logs(Constant.PURCHASE_SUCCESSFUL, user, "Password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been successfully changed");
                         sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
 
                         init();
@@ -324,7 +324,7 @@ public class MgmtProduct extends JPanel {
                 }
                 else if (!stockFld.getText().matches("[0-9]+")) {
                     JOptionPane.showMessageDialog(this, "Stock value not a valid number!");
-                    String tempLog = "Stock name for " + nameFld.getText() + " is not a valid number";
+                    String tempLog = "Stock value for " + nameFld.getText() + " is not a valid number";
                     String timestamp2 = new Timestamp(new Date().getTime()).toString();
                     this.sqlite.addLogs(Constant.EDIT_PRODUCT_FAILED, user, tempLog, timestamp2);
                 }
