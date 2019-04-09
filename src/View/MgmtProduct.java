@@ -67,7 +67,15 @@ public class MgmtProduct extends JPanel {
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
             tableModel.removeRow(0);
         }
-        
+
+        if (sqlite.getProduct().size() == 0) {
+            editBtn.setEnabled(false);
+            deleteBtn.setEnabled(false);
+        }
+        else {
+            editBtn.setEnabled(true);
+            deleteBtn.setEnabled(true);
+        }
 //      LOAD CONTENTS
         ArrayList<Product> products = sqlite.getProduct();
         for(int nCtr = 0; nCtr < products.size(); nCtr++){
@@ -292,6 +300,10 @@ public class MgmtProduct extends JPanel {
                 Timestamp timestamp = new Timestamp(new Date().getTime());
                 String timestamp2 = timestamp.toString();
                 this.sqlite.addLogs(Constant.ADD_PRODUCT_SUCCESSFUL, user, tempLog, timestamp2);
+                if (sqlite.getProduct().size() > 0) {
+                    editBtn.setEnabled(true);
+                    deleteBtn.setEnabled(true);
+                }
                 init();
             }
         }
@@ -357,6 +369,10 @@ public class MgmtProduct extends JPanel {
                 String tempLog = "Product " + tempString + " has been removed from the inventory";
                 String timestamp2 = new Timestamp(new Date().getTime()).toString();
                 this.sqlite.addLogs(Constant.REMOVE_PRODUCT_SUCCESSFUL, user, tempLog, timestamp2);
+                if (sqlite.getProduct().size() == 0) {
+                    editBtn.setEnabled(false);
+                    deleteBtn.setEnabled(false);
+                }
                 init();
             }
         }

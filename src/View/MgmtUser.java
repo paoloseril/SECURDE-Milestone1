@@ -60,7 +60,12 @@ public class MgmtUser extends JPanel {
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
             tableModel.removeRow(0);
         }
-        
+        if (sqlite.getUsers().size() == 0) {
+            deleteBtn.setEnabled(false);
+        }
+        else {
+            deleteBtn.setEnabled(true);
+        }
 //      LOAD CONTENTS
         ArrayList<User> users = sqlite.getUsers();
         for(int nCtr = 0; nCtr < users.size(); nCtr++){
@@ -232,7 +237,8 @@ public class MgmtUser extends JPanel {
         }
     }//GEN-LAST:event_editRoleBtnActionPerformed
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        //GEN-FIRST:event_deleteBtnActionPerformed
         if(table.getSelectedRow() >= 0){
 
             int role = (int) tableModel.getValueAt(table.getSelectedRow(), 2);
@@ -241,6 +247,12 @@ public class MgmtUser extends JPanel {
                 if (result == JOptionPane.YES_OPTION) {
                     System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
                     this.sqlite.removeUser((tableModel.getValueAt(table.getSelectedRow(), 0)).toString());
+                    if (sqlite.getUsers().size() == 0) {
+                        deleteBtn.setEnabled(false);
+                    }
+                    else {
+                        deleteBtn.setEnabled(true);
+                    }
                     Logs log = new Logs(Constant.DELETE_USER_SUCCESSFUL, "admin", "User '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' has been removed");
                     sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                     init();
@@ -305,7 +317,7 @@ public class MgmtUser extends JPanel {
                 else {
                     if (!sqlite.passwordValidity(password.getText())) {
                         JOptionPane.showMessageDialog(null, "New password does not follow the rules!");
-                        Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + "" + "' does not follow the rules");
+                        Logs log = new Logs(Constant.CHANGED_PASSWORD_FAILURE, "admin", "New password for user '" + String.valueOf(tableModel.getValueAt(table.getSelectedRow(), 0)) + "' does not follow the rules");
                         sqlite.addLogs(log.getEvent(), log.getUsername(), log.getDesc(), log.getTimestamp().toString());
                     }
                     else {

@@ -36,7 +36,13 @@ public class MgmtLogs extends javax.swing.JPanel {
         for(int nCtr = tableModel.getRowCount(); nCtr > 0; nCtr--){
             tableModel.removeRow(0);
         }
-        
+
+        if (sqlite.getLogs().size() == 0) {
+            clearBtn.setEnabled(false);
+        }
+        else {
+            clearBtn.setEnabled(true);
+        }
 //      LOAD CONTENTS
         ArrayList<Logs> logs = sqlite.getLogs();
         for(int nCtr = 0; nCtr < logs.size(); nCtr++){
@@ -138,6 +144,12 @@ public class MgmtLogs extends javax.swing.JPanel {
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         String tempString = tableModel.getValueAt(table.getSelectedRow(), 3).toString();
         this.sqlite.deleteLogs(tempString);
+        if (sqlite.getLogs().size() == 0) {
+            clearBtn.setEnabled(false);
+        }
+        else {
+            clearBtn.setEnabled(true);
+        }
         init();
     }//GEN-LAST:event_clearBtnActionPerformed
 
