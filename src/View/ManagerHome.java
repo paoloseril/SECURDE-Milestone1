@@ -47,6 +47,8 @@ public class ManagerHome extends javax.swing.JPanel {
 
         mgmtProduct.setPurchaseBtn(false);
         mgmtHistory.setSearchBtnText("SEARCH USERNAME");
+        mgmtLogs.setClearBtn(false);
+        mgmtLogs.setDebugBtn(false);
 //        UNCOMMENT TO DISABLE BUTTONS
 //        historyBtn.setVisible(false);
 //        usersBtn.setVisible(false);
@@ -155,6 +157,7 @@ public class ManagerHome extends javax.swing.JPanel {
                 .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersBtnActionPerformed

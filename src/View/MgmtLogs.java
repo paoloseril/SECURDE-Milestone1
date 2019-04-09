@@ -8,6 +8,7 @@ package View;
 import Controller.SQLite;
 import Model.Logs;
 import java.util.ArrayList;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -147,6 +148,13 @@ public class MgmtLogs extends javax.swing.JPanel {
             sqlite.DEBUG_MODE = 1;
     }//GEN-LAST:event_debugBtnActionPerformed
 
+    public void setDebugBtn(boolean visible) {
+        this.debugBtn.setVisible(visible);
+    }
+
+    public void setClearBtn(boolean visible) {
+        this.clearBtn.setVisible(visible);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
