@@ -49,7 +49,12 @@ public class MgmtLogs extends javax.swing.JPanel {
 
                 if (!date.isEmpty()) {
                     // remove log from list
-                    possibleLogs.removeIf(log -> !log.getTimestamp().toString().contains(date));
+                    if (!date.matches("[12][0-9]{3}-(0[1-9]|1[0-2])-([0-2][1-9]|3[01])")) {
+                        JOptionPane.showMessageDialog(null, "Invalid date!");
+                    }
+                    else {
+                        possibleLogs.removeIf(log -> !log.getTimestamp().toString().contains(date));
+                    }
                 }
 
                 if (checkListFunction.size() >= 1 || checkListTests.size() >= 1 || checkListUser.size() >= 1) {
