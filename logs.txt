@@ -1,5 +1,6 @@
-----------------------UL
+----------------------
+LO-S
 admin
-User 'manager' has been locked out
-2019-04-10 00:01:39.896
+User admin has successfully logged in
+2019-04-10 09:31:56.426
 ----------------------

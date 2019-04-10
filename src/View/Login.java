@@ -155,7 +155,7 @@ public class Login extends javax.swing.JPanel {
         setUsernameFieldBlack();
         setPasswordFieldBlack();
         if (username.isEmpty() || password.isEmpty()) {
-            frame.main.sqlite.addLogs(Constant.LOGIN_FAILED, username, "User '" + username + "' failed to login due to missing input fields", new Timestamp(new Date().getTime()).toString());
+            frame.main.sqlite.addLogs(Constant.LOGIN_FAILED, username, "User " + username + " failed to login due to missing input fields", new Timestamp(new Date().getTime()).toString());
             if (username.isEmpty() && password.isEmpty()) {
                 jLabel2.setText("Username and password fields are empty!");
                 setUsernameFieldRed();
@@ -177,26 +177,26 @@ public class Login extends javax.swing.JPanel {
                     if (frame.main.sqlite.getUser(username).getRole() == 4) {
                         Constant.managerLockedOut = true;
                     }
-                    frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User '" + username + "' attempted to login but was locked out", new Timestamp(new Date().getTime()).toString());
+                    frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User " + username + " attempted to login but was locked out", new Timestamp(new Date().getTime()).toString());
                     e_Mode();
                 }
                 else {
                     setNormal();
                     resetAttemptCounts();
-                    frame.main.sqlite.addLogs(Constant.LOGIN_SUCCESSFUL, username, "User '" + username + "' has successfully logged in", new Timestamp(new Date().getTime()).toString());
+                    frame.main.sqlite.addLogs(Constant.LOGIN_SUCCESSFUL, username, "User " + username + " has successfully logged in", new Timestamp(new Date().getTime()).toString());
                     frame.mainNav(username, role);
                 }
             }
             else {
                 if (frame.main.sqlite.isLocked(username)) {
-                    frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User '" + username + "' attempted to login but was locked out", new Timestamp(new Date().getTime()).toString());
+                    frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User " + username + " attempted to login but was locked out", new Timestamp(new Date().getTime()).toString());
                     e_Mode();
                 }
                 else {
                     jLabel2.setText("Invalid credentials!");
                     if (frame.main.sqlite.userExists(username) && !username.equalsIgnoreCase("admin")) {
                         increaseCount(username);
-                        frame.main.sqlite.addLogs(Constant.LOGIN_FAILED, username, "User '" + username + "' has been unsuccessful to login due to invalid credentials", new Timestamp(new Date().getTime()).toString());
+                        frame.main.sqlite.addLogs(Constant.LOGIN_FAILED, username, "User " + username + " has been unsuccessful to login due to invalid credentials", new Timestamp(new Date().getTime()).toString());
                         if (getCount(username) == 5) {
                             if (frame.main.sqlite.getUser(username).getRole() == 4) {
                                 Constant.managerLockedOut = true;
@@ -204,7 +204,7 @@ public class Login extends javax.swing.JPanel {
                             // set lock out for user
                             frame.main.sqlite.setLockout(username, 1);
                             e_Mode();
-                            frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User '" + username + "' has been locked out after 5 attempts to login", new Timestamp(new Date().getTime()).toString());
+                            frame.main.sqlite.addLogs(Constant.USER_LOCKED, username, "User " + username + " has been locked out after 5 attempts to login", new Timestamp(new Date().getTime()).toString());
                             resetAttemptCounts();
                         }
                     }

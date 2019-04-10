@@ -139,10 +139,11 @@ public class MgmtLogs extends javax.swing.JPanel {
 
         if (sqlite.getLogs().size() == 0) {
             debugBtn.setEnabled(false);
+            clearBtn.setEnabled(false);
         } else {
             debugBtn.setEnabled(true);
+            clearBtn.setEnabled(true);
         }
-        clearBtn.setEnabled(false);
         debugBtn.setText("ENABLE DEBUG MODE");
 //      LOAD CONTENTS
         ArrayList<Logs> logs = sqlite.getLogs();
@@ -248,18 +249,15 @@ public class MgmtLogs extends javax.swing.JPanel {
         if (sqlite.getLogs().size() == 0) {
             debugBtn.setEnabled(false);
             clearBtn.setEnabled(false);
-            searchLog.setVisible(false);
-            debugBtn.setText("ENABLE DEBUG MODE");
-            sqlite.DEBUG_MODE = 0;
-            init();
         } else {
             debugBtn.setEnabled(true);
+            clearBtn.setEnabled(true);
         }
+        init();
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void debugBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugBtnActionPerformed
         if(sqlite.DEBUG_MODE == 1) {
-            clearBtn.setEnabled(false);
             // close the application
             searchLog.setVisible(false);
             debugBtn.setText("ENABLE DEBUG MODE");
@@ -267,7 +265,6 @@ public class MgmtLogs extends javax.swing.JPanel {
             init();
         }
         else {
-            clearBtn.setEnabled(true);
             debugBtn.setText("DISABLE DEBUG MODE");
             searchLog.setVisible(true);
             sqlite.DEBUG_MODE = 1;

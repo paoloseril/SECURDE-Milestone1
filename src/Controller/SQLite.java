@@ -152,7 +152,7 @@ public class SQLite {
     }
 
     public ArrayList<History> getHistory(String username, String product){
-        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = " + username.toLowerCase()  + " and lower(name) = " + product.toLowerCase();
+        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = '" + username.toLowerCase()  + "' and lower(name) = '" + product.toLowerCase() + "'";
         ArrayList<History> histories = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(driverURL);
@@ -171,7 +171,7 @@ public class SQLite {
     }
 
     public ArrayList<History> getHistory(String username){
-        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = " + username.toLowerCase();
+        String sql = "SELECT id, username, name, stock, timestamp FROM history where lower(username) = '" + username.toLowerCase() + "'";
         ArrayList<History> histories = new ArrayList<History>();
 
         try (Connection conn = DriverManager.getConnection(driverURL);
@@ -342,7 +342,7 @@ public class SQLite {
     }
 
     public void editProduct(String name, int stock, double price){
-        String sql = "UPDATE product SET stock = ' " + stock + " ', price = '" + price + "' WHERE name = '" + name + "'";
+        String sql = "UPDATE product SET stock = '" + stock + "', price = '" + price + "' WHERE name = '" + name + "'";
 
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement()){
@@ -424,21 +424,25 @@ public class SQLite {
     }
 
     public User getUser(String username) {
-        String sql = "SELECT id, username, password, role, locked FROM users where lower(username) = " + username.toLowerCase();
+        if (!(username.contains("'") || username.contains("\""))) {
 
-        try (Connection conn = DriverManager.getConnection(driverURL);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)){
+            String sql = "SELECT id, username, password, role, locked FROM users where lower(username) = " + username.toLowerCase();
 
-            if (rs.next()) {
-                return new User(rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getInt("role"),
-                        rs.getInt("locked"));
+            try (Connection conn = DriverManager.getConnection(driverURL);
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)) {
+
+                if (rs.next()) {
+                    return new User(rs.getInt("id"),
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getInt("role"),
+                            rs.getInt("locked"));
+                }
+            } catch (Exception ex) {
+
             }
-        } catch (Exception ex) {
-
+            return null;
         }
         return null;
     }
@@ -458,18 +462,23 @@ public class SQLite {
     }
 
     public boolean userExists(String username) {
-        String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
-        try (Connection conn = DriverManager.getConnection(driverURL);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        if (!(username.contains("'") || username.contains("\""))) {
+            String sql = "select * from users where lower(username) = '" + username.toLowerCase() + "'";
+            try (Connection conn = DriverManager.getConnection(driverURL);
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)) {
 
-            if (rs.next()) {
-                return true;
+                if (rs.next()) {
+                    return true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return false;
         }
-        return false;
+        else {
+            return false;
+        }
     }
     public int authenticate(String username, String password) {
 
@@ -499,7 +508,6 @@ public class SQLite {
     public void changeRole(String username, int role){
         String sql = "UPDATE users SET role = '" + role + "' WHERE username='" + username + "'";
 
-
         try (Connection conn = DriverManager.getConnection(driverURL);
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
@@ -521,16 +529,21 @@ public class SQLite {
     }
 
     public Product getProduct(String name){
-        String sql = "SELECT name, stock, price FROM product WHERE name='" + name + "';";
-        Product product = null;
-        try (Connection conn = DriverManager.getConnection(driverURL);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)){
-            product = new Product(rs.getString("name"),
-                    rs.getInt("stock"),
-                    rs.getFloat("price"));
-        } catch (Exception ex) {}
-        return product;
+        if (!(name.contains("'") || name.contains("\""))) {
+            String sql = "SELECT name, stock, price FROM product WHERE name='" + name + "';";
+            Product product = null;
+            try (Connection conn = DriverManager.getConnection(driverURL);
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)){
+                product = new Product(rs.getString("name"),
+                        rs.getInt("stock"),
+                        rs.getFloat("price"));
+            } catch (Exception ex) {}
+            return product;
+        }
+        else {
+            return null;
+        }
     }
 
     public void setPassword(String user, String password) {
@@ -559,17 +572,22 @@ public class SQLite {
     }
 
     public boolean isLocked(String user) {
-        String sql = "select * from users where lower(username) = '" + user.toLowerCase() + "' and locked = 1";
-        try (Connection conn = DriverManager.getConnection(driverURL);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        if (!(user.contains("'") || user.contains("\""))) {
+            String sql = "select * from users where lower(username) = '" + user.toLowerCase() + "' and locked = 1";
+            try (Connection conn = DriverManager.getConnection(driverURL);
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)) {
 
-            if (rs.next()) {
-                return true;
+                if (rs.next()) {
+                    return true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return false;
         }
-        return false;
+        else {
+            return false;
+        }
     }
 }
