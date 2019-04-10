@@ -267,6 +267,7 @@ public class MgmtLogs extends javax.swing.JPanel {
         else {
             debugBtn.setText("DISABLE DEBUG MODE");
             searchLog.setVisible(true);
+            clearBtn.setEnabled(false);
             sqlite.DEBUG_MODE = 1;
         }
     }//GEN-LAST:event_debugBtnActionPerformed

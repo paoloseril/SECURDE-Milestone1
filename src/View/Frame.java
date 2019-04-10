@@ -226,6 +226,7 @@ public class Frame extends javax.swing.JFrame {
         registerPnl.frame = this;
         
         adminHomePnl.init(main.sqlite, "");
+
         clientHomePnl.init(main.sqlite, "");
         managerHomePnl.init(main.sqlite, "");
         disabledHomePnl.init();
@@ -243,7 +244,7 @@ public class Frame extends javax.swing.JFrame {
         Content.add(staffHomePnl, "staffHomePnl");
         Content.add(clientHomePnl, "clientHomePnl");
         Content.add(disabledHomePnl, "disabledHomePnl");
-        
+
         this.setVisible(true);
         this.setResizable(false);
 
@@ -320,6 +321,10 @@ public class Frame extends javax.swing.JFrame {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         String timestamp2 = timestamp.toString();
         main.sqlite.addLogs("NOTICE", username, "User creation successful", timestamp2);
+    }
+
+    public JButton getLogoutBtn() {
+        return logoutBtn;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
